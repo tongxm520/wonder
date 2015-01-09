@@ -1,0 +1,41 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Wonder</title>
+<%= javascript_include_tag :defaults %> 
+<%= javascript_include_tag "/js/jquery.js" %> 
+<%#= javascript_include_tag "/js/jquery-ujs-rails.js" %>
+
+<%= csrf_meta_tag %>
+<script type="text/javascript">jQuery.noConflict();</script>
+<link type="text/css" href="/stylesheets/menu.css" rel="stylesheet" />
+<%= javascript_include_tag "/js/menu.js" %> 
+
+<%= stylesheet_link_tag "home" %>
+</head>
+
+<body>
+
+<div class="container wrapper">
+	<%=render :partial => "layouts/header"%>
+	<%= yield %>
+</div>
+</body>
+</html>
+
+<script type="text/javascript">
+/*
+jQuery(document).ready(function(){
+  var links = jQuery("#simple-menu li a");
+  for(var i=0;i<links.length;i++){
+    jQuery(links[i]).click(function(){
+		   jQuery(".current").removeClass("current");
+		   jQuery(this).addClass("current");//将js对象包装成jQuery对象
+		   //这里this换成links[i],不会增加current类
+     });
+   }
+  
+});*/
+</script>
+

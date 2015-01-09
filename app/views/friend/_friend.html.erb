@@ -1,0 +1,44 @@
+<%= stylesheet_link_tag "tab" %>
+
+<div class="wrapper">
+  <%=render :partial => "users/menu_bar"%>
+  
+  <div id="main" style="width:900px;height:auto;">     
+      <div id="daiwowan">
+					<div id="dww-menu" class="mod-tab">
+						<div class="mod-hd">
+							<ul class="tab-nav">
+							  <%if controller_name=="friend" and action_name=="search"%>
+							     <li class="nav_current" id="nav1">寻找好友</li>
+							  <%else%>
+							     <li class="nav_link" id="nav1"><a href="/friend/search">寻找好友</a></li>
+							  <%end%>
+							  <%if controller_name=="friend" and action_name=="manage"%>
+							     <li class="nav_current" id="nav2">好友管理</li>
+							  <%else%>
+							     <li class="nav_link" id="nav2"><a href="/friend/manage">好友管理</a></li> 
+							  <%end%>
+							  <%if controller_name=="friend" and action_name=="know"%>
+							      <li class="nav_current" id="nav3">可能认识的人</li>
+							  <%else%>
+							     <li class="nav_link" id="nav3"><a href="/friend/know">可能认识的人</a></li>
+							  <%end%>
+							  <%if controller_name=="friend" and action_name=="invite"%>
+							     <li class="nav_current" id="nav4">邀请朋友</li>
+							  <%else%>
+							     <li class="nav_link" id="nav4"><a href="/friend/invite">邀请朋友</a></li>
+							  <%end%>							
+							</ul>
+						</div>
+						<div class="mod-bd">
+							<div class="dis" id="sub<%=sub%>">
+								<%=render :partial => kind%>
+							</div>
+							
+						</div>
+					</div>
+				</div>
+  
+      
+  </div>
+</div>

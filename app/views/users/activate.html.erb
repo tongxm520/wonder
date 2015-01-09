@@ -1,0 +1,12 @@
+<%= stylesheet_link_tag "confirm" %>
+
+<div class="reg_main clearfix">
+  <div class="opt_rslt clearfix">
+  	<h2 class="tl"><span class="icon_del_42"></span><%=raw flash.now[:error]%></h2>
+      <dl class="opt_info">
+          <dt>操作提示:</dt>
+          <dd>1、请到您邮箱中确认并完整复制邮箱验证链接后再次进行操作。</dd>
+          <dd>2、验证邮件的有效期为30分钟，如果您没能在30分钟内对您注册的账户进行验证，请<a href="/register">重新注册</a></dd>
+      </dl>
+  </div>
+</div>

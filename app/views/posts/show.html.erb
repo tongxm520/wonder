@@ -1,0 +1,112 @@
+<div class="wrapper">
+  <%=render :partial => "users/menu_bar"%>
+  
+  <div id="main">
+     <form action="<%=del_user_post_path(@user,@post)%>" method="post" name="postform">
+     </form>
+     <div>
+       <a class="btn_sub" href="<%=new_user_post_path(@user)%>"><span>写新日志</span></a>
+     </div>
+      
+     <div class="post-list">
+        <div class="post-module">
+          <div class="post-operate">
+             <a href="<%=edit_user_post_path(@user,@post)%>" class="sl" title="编辑">编辑</a> 
+             <span class="cc">┊</span> 
+             <a href="javascript:void();" onclick="if(confirm('你确定删除吗?')) del_post(); return false;" class="sl" title="删除">删除</a>
+          </div>
+          <div class="post-module-title">
+             <h4><a href="#"><%=@post.subject%></a></h4>
+             <p>
+		            <span><%=@post.created_at.china_time%></span>
+									<span>分类：<%=@post.category_name %></span>
+									<span>权限：<%=Post::ACCESS[@post.access]%></span>
+             </p>
+          </div>
+        </div>
+        <div class="post-intro">
+          <div class="content"><%=raw @post.content%></div>
+         </div>
+     </div>
+       
+       
+     <%=render :partial => "comments"%>
+     
+     
+  </div>
+  
+  <div id="sidebar">
+		
+		
+  </div><!--sidebar-->
+</div>
+
+<style type="text/css">
+/*-----------------------------------------------------------*/
+.post-list {
+    margin-bottom: 20px;
+    padding: 0 0 10px;
+}
+
+.post-module-title {
+    width: 550px;
+}
+
+.post-module p span {
+    padding-right: 10px;
+    font-size:14px;
+    color:#999;
+}
+.post-operate {
+  display:block;
+  float: right;
+  margin-top: 10px;
+}
+
+.post-intro .content {
+    line-height: 1.8;
+    font-size: 14px;
+}
+/*---------btn--------------------------------*/
+ .btn_sub, .btn_sub span {
+    background-image: url("/images/reg_btn.png");
+    background-repeat: no-repeat;
+    display: inline-block;
+    font-size: 14px;
+    height: 42px;
+    line-height: 42px;
+}
+
+ .btn_sub {
+    color: #FFFFFF;
+    padding-left: 68px;
+}
+
+.btn_sub span {
+    background-position: right -60px;
+    color: #FFFFFF;
+    padding-right: 68px;
+}
+
+.btn_sub:hover {
+    background-position: 0 -120px;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+ .btn_sub:hover span {
+    background-position: right -180px;
+    color: #FFFFFF;
+}
+
+/*--------------------------------------------------------*/
+
+</style>
+
+<script type="text/javascript">
+function del_post(){
+  document.postform.submit();  
+}
+
+</script>
+

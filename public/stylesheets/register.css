@@ -1,0 +1,240 @@
+
+.reg_main {
+    background: url("/images/bg_reg_conmain.png") no-repeat scroll 610px 50px #FFFFFF;
+    border: 1px solid #E0E0E0;
+    border-radius: 8px;
+    box-shadow: 0 0 3px 0 #EAEAEA;
+    height: auto !important;
+    margin: 25px auto 5px;
+    min-height: 450px;
+    padding: 45px 60px;
+    width: 885px;
+}
+
+.reg_box li {
+    float: left;
+    margin-bottom: 20px;
+    width: 100%;
+}
+
+.reg_box {
+    color: #333333;
+}
+
+ul, dl, ol {
+    list-style: none outside none;
+}
+
+.reg_formlabel {
+    -moz-text-align-last: justify;
+    float: left;
+    font: 14px 'lucida grande',tahoma,verdana,arial,simsun,sans-serif;
+    margin: 6px 5px 0 0;
+    text-align: justify;
+    width: 70px;
+}
+
+.reg_element input.txt, .reg_element input.capt {
+    border: 1px solid #b2bbcd;
+    height: 25px;
+    width: 230px;
+}
+
+input:focus {
+    outline: 0 none;
+}
+
+.reg_element .inp_box input.on_fs {
+    border-left: 2px solid #939FB6;
+    border-top: 2px solid #939FB6;
+}
+
+.reg_element {
+    float: left;
+    position: relative;
+    width: 250px;
+}
+
+element.style {
+    display: block;
+}
+
+.error {
+    background: url("/images/error.gif") no-repeat scroll 3px 0 #FFE5E5;
+    border: 1px solid #FFB7B7;
+    color: #DD4B39;
+    left: 4px;
+    padding-left: 25px;
+}
+
+.error span {
+    display: inline-block;
+    white-space: normal;
+    width: 140px;
+    font-size: 12px;
+}
+
+.error, .prompt {
+    box-shadow: none;
+}
+
+.prompt {
+    background-color: #FFFFFF;
+    border: 1px solid #DBDBDB;
+    color: #999999;
+    left: 4px;
+    padding: 2px 6px;
+    position: absolute;
+}
+
+.prompt span {
+    display: inline-block;
+    white-space: normal;
+    width: 170px;
+    font-size: 12px;
+}
+
+.prompt span i {
+    color: #D32503;
+    font-style: normal;
+}
+
+.w50 {
+    width: 50px;
+}
+
+.w74 {
+    width: 74px;
+}
+
+.reg_ok_img {
+    left: -28px;
+    position: absolute;
+    top: 3px;
+}
+.reg_tips {
+    left: 246px;
+    position: absolute;
+    top: 0;
+    width: 178px;
+}
+.reg_tips .tips_img {
+    height: 24px;
+    vertical-align: middle;
+    width: 18px;
+}
+.reg_tips .tips_img img {
+    vertical-align: middle;
+}
+
+#inputInner {
+    background: none repeat scroll 0 0 #FFFFFF;
+    border: 1px solid #CCCCCC;
+    color: #999999;
+    font-size: 12px;
+    height: auto;
+    left: 0;
+    position: absolute;
+    top: 25px;
+    width: 230px;
+    z-index: 2;
+}
+#inputInner a {
+    color: #999999;
+    display: block;
+    height: 20px;
+    line-height: 20px;
+    padding-left: 6px;
+    text-decoration: none;
+}
+#inputInner a:hover, .active {
+    background: none repeat scroll 0 0 #F4F4F4;
+}
+
+.reg_element input.job {
+    border: 1px solid #b2bbcd;
+    height: 25px;
+    width: 145px;
+}
+
+.incon_city_arrowbottom {
+    background: url("/images/incon_city_arrowbottom.png") no-repeat scroll right 4px rgba(0, 0, 0, 0);
+    cursor: pointer;
+}
+
+/*-------choose_city------------------------------------------*/
+#choose_city {
+    color: #005EAC;
+    font-size: 12px;
+    margin: 0 auto;
+    width: 456px;
+}
+
+.cityBg_top {
+    background: url("/images/cityBg_top2.gif") no-repeat scroll center top rgba(0, 0, 0, 0);
+    height: 25px;
+    width: 456px;
+}
+
+.cityBg_bot {
+    background: url("/images/cityBg_bot2.gif") no-repeat scroll center top rgba(0, 0, 0, 0);
+    height: 15px;
+    width: 456px;
+}
+
+.cityBg {
+    background: none repeat scroll 0 0 #F7F7F7;
+    border-left: 1px solid #C9C9C9;
+    border-right: 1px solid #C9C9C9;
+    width: 454px;
+}
+
+.cityBg .cbox {
+    background: none repeat scroll 0 0 #FFFFFF;
+    border: 1px solid #C8C8C8;
+    cursor: pointer;
+    line-height: 180%;
+    margin: 0 auto;
+    padding: 3px 3px 3px 7px;
+    width: 410px;
+}
+
+.cityBg .cbox span {
+    color: #336699;
+    padding: 2px 6px;
+}
+
+.cityBg .cbox span.curr {
+    background: none repeat scroll 0 0 #E9F2FD;
+    padding: 2px 6px;
+}
+
+.cityBg .city_list {
+    margin: 0;
+    padding: 0;
+    width: 410px;
+}
+
+.cityBg .city_list span {
+    background: url("/images/dot.gif") no-repeat scroll left center rgba(0, 0, 0, 0);
+    line-height: 24px;
+    padding: 0 11px 0 10px;
+    word-break: keep-all;
+}
+
+.cityBg .btn_area {
+    padding: 10px 0 4px 392px;
+}
+
+.sl, a.sl, .sl2, a.sl2 {
+    border-bottom: 1px solid #FFFFFF;
+    color: #336699;
+    font-family: Arial;
+    text-decoration: none;
+}
+
+/*-------------------------------------------------*/
+
+
+
+

@@ -1,0 +1,15 @@
+cat1:
+  id: 1
+  name: "web server"
+cat2:
+  id: 2
+  name: "数据库"
+cat3:
+  id: 3
+  name: "rails plugins"
+cat4:
+  id: 4
+  name: "ruby"
+cat5:
+  id: 5
+  name: "shell programming"

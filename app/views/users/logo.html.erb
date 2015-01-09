@@ -1,0 +1,164 @@
+<div class="wrapper">
+  <%=render :partial => "menu_bar"%>
+  
+  <div id="main">
+      <div id="user-logo">
+ 
+					 <div class="m0_20  f13">
+						 <a class="sl" href="<%=account_user_path(current_user)%>">基本资料</a> <span class="cd">┊</span>
+							头像昵称 <span class="cd">┊</span> 
+						 <a class="sl" href="#">登录密码</a> <span class="cd">┊</span> 
+						 <a class="sl" href="#">修改邮箱</a> <span class="cd">┊</span>  
+					 </div>
+					 
+						 <div id="logo-form">
+								 <%=form_tag upload_logo_user_path(@user), :name=>"logoform",
+								 :enctype=>"multipart/form-data" do %>
+									 <div class="info">
+											 <div class="item">
+											 <label>昵称：</label>
+											 <input class="inputstyle" value="" type="text" style="width:263px;" size="30" name="nick_name">
+											 </div>
+											 
+											 <div>
+											 <label>头像：</label>
+											 <%= file_field_tag :uploaded_logo, :style=>"width:263px;",:id=>"file"%>
+											 </div>
+											 
+											 <!--img id="get-image"-->
+										 </div>
+										 
+										 <div class="fix">
+												 <span class="log"><button tabindex="6" class="normal" type="submit"><em><span><b><i>保存设置</i></b></span></em></button></span>
+										 </div>
+								 <%end%>
+						 </div>
+						 
+					</div>
+  </div>
+ 
+  
+</div>
+
+<style type="text/css">
+.m0_20 {
+    margin: 0 20px;
+    margin-top: 20px;
+    margin-left: 20px;
+}
+
+.f13 {
+    font-size: 13px;
+}
+
+
+.sl, a.sl {
+    border-bottom: 1px solid #FFFFFF;
+    color: #336699;
+    font-family: Arial;
+    text-decoration: none;
+}
+/*-----------------------------------------------*/
+#user-logo {
+  border: 1px solid yellow;
+  width:700px;
+  height: 600px;
+}
+
+#logo-form {
+  margin-top:40px;
+  margin-left:40px;
+}
+
+.inputstyle {
+  border: 1px solid #EEEEEE;
+  font:14px arial;
+  outline: 0 none;
+  margin:0;
+  padding: 8px 7px;
+}
+
+.info{
+   padding-bottom: 15px;
+   padding-left: 60px;
+}
+
+.item {
+  margin-bottom: 15px;
+}
+
+.fix {
+  padding-left:60px;
+}
+
+.log button {
+  background: green;
+} 
+
+.log * {
+  cursor: pointer;
+  display: inline-block;
+  font-family: '宋体';
+  font-style: normal;
+  font-weight: 400;
+  text-align: center;
+  text-decoration: none;
+  white-space: nowrap;
+}
+</style>
+<script type="text/javascript">
+/**
+ * 本脚本用于获取 HTML input[type=file] 控件的文件路径
+ * 当使用 IE 浏览器且版本高于 6.0 时, 由于浏览器安全限制, 暂时没有好的解决方案, 
+ * 需要客户端浏览器进行设置: Internet选项 - 安全 - 自定义级别 - 启用"将文件上载到服务器时包含本地目录路径"
+ */
+ 
+var o = document.getElementById('file');
+ 
+o.onchange = function(){
+	getFilePath(this, function(file_path){
+		//alert(file_path);
+		img = document.getElementById("get-image");
+		img.src = file_path;
+		img.style ="max-height:180px;max-width:180px;"
+	});
+}
+ 
+function getFilePath(o, callback){
+	var url = '';
+ 
+	if(document.all){ // MSIE
+		url = o.value;
+	}else{
+		if(o.files && o.files[0]){
+			if(window.File && window.FileReader && window.FileList && window.Blob){
+				var reader = new FileReader();
+				reader.onloadend = function(e){
+					if(e.target.readyState == FileReader.DONE){
+						callback(e.target.result);
+					}
+				};
+				reader.readAsDataURL(o.files[0]);
+			}else if(o.files[0].getAsDataURL() != undefined){
+				url = o.files[0].getAsDataURL();
+			}
+		}
+	}
+ 
+	if(url != '')
+		callback(url);
+}
+ 
+// Javascript获取IE浏览器版本号
+// 非IE浏览器返回空字符串
+function getIEVersion(){
+	if (window.navigator.userAgent.indexOf('MSIE') > -1) {
+		var regex = /MSIE ([^;]*);/i;
+		regex.test(window.navigator.userAgent);
+		return RegExp.$1;
+	} else {
+		return '';
+	}
+}
+</script>
+

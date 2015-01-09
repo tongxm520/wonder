@@ -1,0 +1,106 @@
+
+<%= stylesheet_link_tag "menu" %>
+
+<div class="container">
+   <%=form_tag login_url,:id=>"login-form", :name=>"loginform" do %>
+     <h4>登录wonder网</h4>
+     <% if flash[:alert] %>
+       <p id="notice"><%=raw flash[:alert] %></p>
+     <% end %>
+     <div class="info">
+       <div class="item">
+       <label>帐号：</label>
+       <input class="inputstyle" value="<%=params['email']%>" type="text" style="width:263px;" size="40" name="email">
+       </div>
+       
+       <div>
+       <label>密码：</label>
+       <input class="inputstyle" type="password" style="width:263px;" size="40" name="password" maxlength="20">
+       </div>
+     </div>
+       <div class="fix item">
+       <a id="forget" href="#">忘记密码 </a>
+       <span ><input type="checkbox" tabindex="5" value="1" name="remember" id="remember" class="checkboxinput"><label for="ck_remember">下次自动登录</label></span>
+       </div>
+       
+       <div class="fix">
+           <span class="log"><button tabindex="6" class="normal" type="submit"><em><span><b><i>登录</i></b></span></em></button></span>&nbsp;&nbsp;&nbsp;
+           <a tabindex="8" class="" href="register">立即注册</a>
+       </div>
+   <%end%>
+</div>
+
+
+
+<style type="text/css">
+
+div.container {
+  height: 350px;
+  width: 450px;
+  border: 1px solid #EAEAEA;
+  background: url("/images/white-bg.png") repeat-x scroll 0 0 #EEF4FA;
+  margin: auto;
+  position: absolute;
+  top: 0; left: 0; bottom: 0; right: 0;
+}
+
+.inputstyle {
+  border: 1px solid #EEEEEE;
+  font:14px arial;
+  outline: 0 none;
+  margin:0;
+  padding: 8px 7px;
+}
+
+.info{
+   padding-bottom: 15px;
+   padding-left: 60px;
+}
+
+.item {
+  margin-bottom: 15px;
+}
+
+.fix {
+  padding-left:60px;
+}
+
+#forget{
+  float:right;
+  margin-right:55px;
+}
+
+#forget, .fix a{
+  text-decoration: none;
+  font-size: 12px;
+}
+
+.log button {
+  background: red;
+} 
+
+.log * {
+  cursor: pointer;
+  display: inline-block;
+  font-family: '宋体';
+  font-style: normal;
+  font-weight: 400;
+  text-align: center;
+  text-decoration: none;
+  white-space: nowrap;
+}
+/*-----------------------------------------------------------*/
+
+#notice {
+  color: #000 !important;
+  border: 2px solid red;
+  padding: 1em;
+  margin-bottom: 2em;
+  background-color: #f0f0f0;
+  font: bold smaller sans-serif;
+}
+
+</style>
+
+
+

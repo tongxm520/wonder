@@ -1,0 +1,28 @@
+<div>
+	<%=form_for @comment,:as=>:comment,:remote => true , :url=>comments_path, :method=>"post",:html=>{:name=>"commentform"} do |f|%>
+	<input type="hidden" value="<%=current_user.id%>" name="comment[user_id]">
+	<input type="hidden" value="<%=current_user.name%>" name="comment[user_name]">
+	<input type="hidden" value="<%=current_user.small_logo_path%>" name="comment[user_logo]">
+	<input type="hidden" value="<%=@post.id%>" name="comment[post_id]">
+	<div class="post-edit">
+			<div class="edit_line">
+				<div>
+					<%= f.text_area :content,:style=>"overflow-y: auto; height: 100px;width:600px; overflow-x: hidden; word-wrap: break-word; resize: none; color: rgb(169, 169, 169);"%>
+				</div>
+			</div>
+		
+			<div class="edit_line">
+				<div style="float:right;margin-right:110px;"><button tabindex="6" class="normal" type="submit"><em><span><b><i>评论</i></b></span></em></button></div>
+			  <div></div>
+			</div>	
+	</div>
+	<%end%>
+</div>
+<br />
+<div id="comment-list">
+  <%=render :partial=>"comments/comments" %>	
+	
+</div><!--comment-list-->
+
+
+

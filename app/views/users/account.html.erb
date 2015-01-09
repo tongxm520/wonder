@@ -1,0 +1,43 @@
+<div class="wrapper">
+  <%=render :partial => "menu_bar"%>
+  
+  <div id="main"> 
+     <div id="user-logo">
+					 <div class="m0_20  f13">
+						 基本资料 <span class="cd">┊</span>
+							<a class="sl" href="<%=logo_user_path(current_user)%>">头像昵称 </a><span class="cd">┊</span> 
+						 <a class="sl" href="#">登录密码</a> <span class="cd">┊</span> 
+						 <a class="sl" href="#">修改邮箱</a> <span class="cd">┊</span>  
+					 </div>
+			</div>   
+  </div>
+ 
+  
+</div>
+
+<style type="text/css">
+.m0_20 {
+    margin: 0 20px;
+    margin-top: 20px;
+    margin-left: 20px;
+}
+
+.f13 {
+    font-size: 13px;
+}
+
+
+.sl, a.sl {
+    border-bottom: 1px solid #FFFFFF;
+    color: #336699;
+    font-family: Arial;
+    text-decoration: none;
+}
+/*-----------------------------------------------*/
+#user-logo {
+  border: 1px solid yellow;
+  width:700px;
+  height: 600px;
+}
+</style>
+

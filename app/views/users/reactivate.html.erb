@@ -1,0 +1,27 @@
+<%= stylesheet_link_tag "confirm" %>
+
+<div class="main_cen">
+      <p class="title_big red">重新发送验证邮件</p>
+      <p class="title1"></p>
+	   <p style="text-align:center">
+			请在输入框内填写您注册时使用的邮箱地址，然后点击“重发确认信”。<br><br>
+			<b>友情提示：</b>如果您未能在上次成功发送确认信的48小时内完成确认，请您<a href="/register"><u>重新注册</u></a>。
+		</p>
+		<br>
+				
+	  <ul class="mainlogin">
+	    <li>
+		  <div class="ml_l f14">您的邮件地址：</div>
+		  <div class="ml_r">
+		    <div class="inputbox"><span class="input "><cite><input type="text" value="<%=params['email']%>" alt="邮箱地址:无内容/有全角/有空格/有大写/有中文/邮箱地址/非新浪邮箱/focusFn{unameTip}/errArea{usernametip}" maxlength="64" name="user" id="username"></cite></span></div>
+			<span id="usernametip"><span><span class="inputacc"><span class="yes"></span></span></span></span>
+		  </div>
+		</li>
+	    <li>
+		  <div class="ml_l"></div>
+		  <div class="ml_r">
+		  	<input type="submit" value="重发确认信" class="btn_submit" name="submit">
+		  </div>
+		</li>
+	  </ul>
+</div>

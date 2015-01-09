@@ -1,0 +1,23 @@
+[Wed Jun 18 12:33:25.418 2014] [ 5872] accepting connections
+[Wed Jun 18 12:35:05.881 2014] [ 5872] caught SIGTERM, shutting down
+[Wed Jun 18 12:35:05.881 2014] [ 5872] shutdown complete
+[Wed Jun 18 12:35:06.193 2014] [ 5908] accepting connections
+[Thu Jun 19 17:23:40.747 2014] [ 2309] accepting connections
+[Thu Jun 19 17:31:41.408 2014] [ 2309] caught SIGTERM, shutting down
+[Thu Jun 19 17:31:41.409 2014] [ 2309] shutdown complete
+[Thu Jun 19 17:31:41.765 2014] [ 2577] accepting connections
+[Thu Jun 19 17:31:51.409 2014] [ 2577] caught SIGTERM, shutting down
+[Thu Jun 19 17:31:51.409 2014] [ 2577] shutdown complete
+[Thu Jun 19 17:31:51.721 2014] [ 2614] accepting connections
+[Thu Jun 19 17:37:25.520 2014] [ 2614] caught SIGTERM, shutting down
+[Thu Jun 19 17:37:25.521 2014] [ 2614] shutdown complete
+[Thu Jun 19 17:37:25.849 2014] [ 2914] accepting connections
+[Sun Jul 27 14:40:28.914 2014] [ 4250] accepting connections
+[Sun Jul 27 17:46:20.620 2014] [ 2841] accepting connections
+[Mon Jul 28 12:54:59.484 2014] [ 3241] accepting connections
+[Mon Jul 28 13:02:56.920 2014] [ 3241] caught SIGTERM, shutting down
+[Mon Jul 28 13:02:56.920 2014] [ 3241] shutdown complete
+[Mon Jul 28 13:02:57.304 2014] [ 3380] accepting connections
+[Sat Aug  2 20:18:00.687 2014] [ 9752] accepting connections
+[Sun Aug  3 13:13:38.059 2014] [ 2586] accepting connections
+[Mon Aug  4 14:34:27.558 2014] [ 2388] accepting connections

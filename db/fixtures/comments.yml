@@ -1,0 +1,56 @@
+cmt1:
+  id: 1
+  content: "写的很不错，总结的很全面，节省了我许多时间，希望楼主再接再励。我之前用的是sphinx，中文支持的不是很好，没想到还有coreseek这个玩意，看来真是我知识面太狭窄了啊，应该反省反省了，呵呵"
+  post_id: 1
+  user_id: 1
+  user_name: "童小明"
+  created_at: <%=2.days.ago%>
+
+cmt2:
+  id: 2
+  content: "中文分词，这个概念我不陌生，因为在大学时我就做个一个项目，其中的搜索模块是用lucene，感觉这个不怎么好用,后来有朋友介绍了sphinx，感觉这还不错，Sphinx是一个独立的搜索引擎，意图为其他应用提供高速、低空间占用、高结果相关度的全文搜索功能。Sphinx可以非常容易的与SQL数据库和脚本语言集成。当前系统内置MySQL和PostgreSQL 数据库数据源的支持，也支持从标准输入读取特定格式的XML数据。通过修改源代码，用户可以自行增加新的数据源（例如：其他类型的DBMS的原生支持）。"
+  post_id: 1
+  user_id: 1
+  user_name: "童小明"
+  created_at: <%=2.hours.ago%>
+  
+cmt3:
+  id: 3
+  content: "Sphinx的特性: 高速的建立索引(在当代CPU上，峰值性能可达到10 MB/秒);高性能的搜索(在2 – 4GB 的文本数据上，平均每次检索响应时间小于0.1秒);可处理海量数据(目前已知可以处理超过100 GB的文本数据, 在单一CPU的系统上可处理100 M 文档);提供了优秀的相关度算法，基于短语相似度和统计（BM25）的复合Ranking方法;原生的MySQL支持(同时支持MyISAM 和InnoDB );"
+  post_id: 1
+  user_id: 1
+  user_name: "童小明"
+  created_at: <%=2.minutes.ago%>
+  
+cmt4:
+  id: 4
+  content: " 通常我们想搜索到尽可能多的一句话中的内容，使用的是SPH_MATCH_ANY,但使用它之后，任何关键词中的字都可能做为一个单独的词进行搜索。这样语义不合适。而且这种匹配模式对词频也很有权重，个人感觉得出来的搜索结果不是很准确。
+今天介绍的是SPH_MATCH_EXTENDED2，使用过的朋友可能觉得它也要搜索的关键词同时存在才会被搜索出来。是因为SPHINX默认不是通过空格分词的。而是通过\"\"来分。比如两个关键词：我们 他是。如果单这样写
+$sphinx->query('我们 他是',index);使用any模式会折成 我 们 他 是  。似乎是一元分词法。而使用extended2则要搜索的字段同时存在这2个词才可以被搜索到。如果写成   $sphinx->query('我们|他是'，index);那么他就会分成我们和他是2个词。而且同时存在的权重高。比较符合搜索规范。
+就这样吧 肯定有说的很不正确的地方。大家一起讨论哈"
+  post_id: 1
+  user_id: 1
+  user_name: "童小明"
+  created_at: <%=1.minutes.ago%>
+  
+cmt5:
+  id: 5
+  content: "线程是独立调度和分派的基本单位。线程可以操作系统内核调度的内核线程，如Win32线程；由用户进程自行调度的用户线程，如Linux平台的POSIX Thread；或者由内核与用户进程，如Windows 7的线程，进行混合调度。
+同一进程中的多条线程将共享该进程中的全部系统资源，如虚拟地址空间，文件描述符和信号处理等等。但同一进程中的多个线程有各自的调用栈(call stack)，自己的寄存器环境（register context)，自己的线程本地存储(thread-local storage)。"
+  post_id: 1
+  user_id: 2
+  user_name: "武松"
+  created_at: <%=30.seconds.ago%>
+  
+cmt6:
+  id: 6
+  content: "在多核或多CPU，或支持Hyper-threading的CPU上使用多线程程序设计的好处是显而易见，即提高了程序的执行吞吐率。在单CPU单核的计算机上，使用多线程技术，也可以把进程中负责IO处理、人机交互而常备阻塞的部分与密集计算的部分分开来执行，编写专门的workhorse线程执行密集计算，从而提高了程序的执行效率。"
+  post_id: 1
+  user_id: 2
+  user_name: "武松"
+  created_at: <%=15.seconds.ago%>
+
+
+    
+
+  

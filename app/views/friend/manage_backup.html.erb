@@ -1,0 +1,60 @@
+<%= stylesheet_link_tag "tab" %>
+
+<div class="wrapper">
+  <%=render :partial => "users/menu_bar"%>
+  
+  <div id="main" style="width:900px;height:auto;">     
+      <div id="daiwowan">
+					<div id="dww-menu" class="mod-tab">
+						<div class="mod-hd">
+							<ul class="tab-nav">
+								<li class="nav_current" id="nav1" onclick="doClick(this)">寻找好友</li>
+								<li class="nav_link" id="nav2" onclick="doClick(this)">好友管理</li>
+								<li class="nav_link" id="nav3" onclick="doClick(this)">可能认识的人</li>
+								<li class="nav_link" id="nav4" onclick="doClick(this)">邀请朋友</li>
+							</ul>
+						</div>
+						<div class="mod-bd">
+							<div class="dis" id="sub1">
+								<%=render :partial => "find_friend"%>
+							</div>
+							<div class="undis" id="sub2">
+								<%=render :partial => "manage_friend"%>
+							</div>
+							<div class="undis" id="sub3">
+								<%=render :partial => "know_friend"%>
+							</div>
+							<div class="undis" id="sub4">
+								
+							</div>
+						</div>
+					</div>
+				</div>
+  
+      
+  </div>
+</div>
+
+<script type="text/javascript">
+ function doClick(o){
+	 o.className="nav_current";
+	 var j;
+	 var id;
+	 var e;
+	 for(var i=1;i<=4;i++){ 
+	   id ="nav"+i;
+	   j = document.getElementById(id);
+	   e = document.getElementById("sub"+i);
+	   if(id != o.id){
+	   	 j.className="nav_link";
+	   	 e.style.display = "none";
+	   }else{
+			e.style.display = "block";
+	   }
+	 }
+}
+</script>
+
+
+
+

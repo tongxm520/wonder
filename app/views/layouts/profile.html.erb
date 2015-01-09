@@ -1,0 +1,98 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Wonder</title>
+<%= javascript_include_tag :defaults %> 
+<%= javascript_include_tag "/js/jquery.js" %> 
+<%#= javascript_include_tag "/js/jquery-ujs-rails.js" %>
+
+<%= csrf_meta_tag %>
+<script type="text/javascript">jQuery.noConflict();</script>
+<link type="text/css" href="/stylesheets/menu.css" rel="stylesheet" />
+<%= javascript_include_tag "/js/menu.js" %> 
+<%= stylesheet_link_tag "home" %>
+</head>
+
+<body>
+
+<div class="container wrapper">
+	<%=render :partial => "layouts/header"%>
+
+	<div class="user_desc">
+		<div class="user_logo">
+				
+			<div id="logo-item">      
+			 <div class="logo-left">
+				<%img = @user.medium_logo_path ? @user.medium_logo_path : "/images/cartman.jpg"%>
+				<div><a href="<%=profile_user_path(@user)%>"><img src="<%=img%>" alt="" width="120" height="120" border="0" /></a></div>
+				<div class="item_a">
+				  <a href="#"  title="">发短消息</a>
+				  <a href="#"  title="">加好友</a>
+				</div>       
+			 </div>
+				<div class="text-right">
+					<ul>
+						 <li class="big"><%=@user.name%></li>
+						 <li><span><%=User::STATUS[@user.status]%></span> <span>生于<%=@user.birth.year%>年<%=@user.birth.month%>月<%=@user.birth.day%>日</span> <span>住在<%=@user.city%></span></li>
+						 <li>听音乐 写写部落格 哈哈</li>
+					</ul>
+				</div>
+			</div>
+				
+		</div>
+		</div>
+
+		<div class="wrapper">
+		
+			<div id="menubar">
+				<ul id="menulist">
+					<li class="menuitem"><%=link_to "#{@owner}的日志",@owner_url%></li>
+					<li class="menuitem"><%=@owner%>的相册</li>
+					<li class="menuitem"><%=@owner%>的留言板</li>
+					<li class="menuitem"><%=@owner%>的说说</li>
+				</ul>
+			</div>
+		
+			<div id="main" style="width:700px;height:600px;">
+				 <%= yield %>
+			</div>
+		 
+			<div id="sidebar">
+				 <%=render :partial => "users/side_bar"%>
+		
+			</div><!--sidebar-->
+		</div>
+	
+</div>
+</body>
+</html>
+<style type="text/css">
+.user_desc {
+  width: 100%;
+  height:160px;
+  background: url("/images/confirm_bg.jpg") repeat-x scroll 0 top #DCEAF5;
+}
+
+.logo-left{
+ margin-left:50px;
+ float:left;
+ }
+ 
+.text-right{
+   margin-left:200px;
+   margin-top: 10px;
+ }
+ 
+ .text-right ul li {
+   list-style-type:none;
+ }
+ .text-right ul li.big {
+  font-size:28px;
+ }
+ 
+ .item_a a {
+ color:blue;
+ }
+</style>
+

@@ -1,0 +1,12 @@
+<div class="wrapper">
+  <%=render :partial => "users/menu_bar"%>
+  
+  <div id="main">
+     <%= render :partial => 'form' ,:locals=>{:operate =>"编辑日志",
+     :url=>user_post_path(@user),:method=> "put"}
+      %>
+  </div>
+ 
+</div>
+
+

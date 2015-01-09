@@ -1,0 +1,86 @@
+.more {
+    cursor: default;
+    padding: 1px 6px 0;
+    margin-top:5px;
+}
+
+.more .l{
+  display:block;
+  float:left;
+}
+
+.more .l span {
+    margin-left: 3px;
+}
+
+.more .l b a {
+    color: #333333;
+}
+
+.more .l b {
+    color: #333333;
+    cursor: default;
+}
+
+.more .r{
+  display:block;
+  margin-left:250px;
+}
+.more a{
+  text-decoration: none;
+}
+
+.clearfix:after {
+    clear: both;
+    content: ".";
+    display: block;
+    font-size: 0;
+    height: 0;
+    line-height: 0;
+    visibility: hidden;
+}
+
+ /*强制将inline-block的元素换行*/
+.force_break{
+  float:left;
+  display:inline-block;
+  clear:both;
+}
+ /*强制将inline-block的元素换行*/
+ 
+ 
+/****************************************/
+.avatar_50 {
+    float:left;
+    background-repeat: no-repeat;
+    border-radius: 5px;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1) inset;
+    display: inline-block;
+    height: 50px;
+    width: 50px;
+}
+
+.frd_name {
+    line-height: 14px;
+    text-align: center;
+}
+.frd_name a {
+  text-decoration: none;
+}
+.homeFriendItem {
+    float: left;
+    margin-right: 10px;
+    min-height: 80px;
+    width: 50px;
+}
+
+.vaftime {
+    color: #ddd;
+    font-family: Arial;
+    font-size: 10px;
+    margin-top: -1px;
+    text-align: center;
+}
+/****************************************/
+
+

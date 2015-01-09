@@ -1,0 +1,19 @@
+<div id="menubar">
+		<div id="user">
+			 <table>
+				<tr>
+				 <%img = current_user.small_logo_path ? current_user.small_logo_path : "/images/cartman.jpg"%>
+				 <td><%= image_tag(img)%></td>
+				 <td class="user_description">			 
+						<%= current_user.name %>						
+				 </td>
+				</tr>
+			 </table>
+		</div>
+		<ul id="menulist">
+			<li class="menuitem"><%=link_to "#{@owner}的日志",user_posts_path(@user) %></li>
+			<li class="menuitem"><%=@owner%>的相册</li>
+			<li class="menuitem"><%=@owner%>的留言板</li>
+			<li class="menuitem"><%=@owner%>的说说</li>
+		</ul>
+</div>

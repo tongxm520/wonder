@@ -1,0 +1,28 @@
+<%= stylesheet_link_tag "confirm" %>
+
+<div class="reg_main clearfix">
+<!--邮箱注册 需要激活-->
+<div class="opt_rslt clearfix">
+    <h2 class="tl">
+       <span class="icon_succ_42"></span>
+				感谢您的注册，请立即验证邮箱地址。
+			</h2>
+    <dl class="opt_info">
+        <dt>登录您的邮箱激活账号!</dt>
+        <dd>我们已经将确认邮件发送到您的邮箱 <%=@user.email%></dd>
+        <dd>请进入邮箱完成激活流程,点击邮件里的确认链接即可登录。</dd>
+    </dl>
+    <div class="log_mail">
+      <a target="_blank" class="btn_sub" href="http://mail.<%=@user.email.split('@')[1]%>"><span>立即登录<%=@user.email.split("@")[1].split(".")[0]%>邮箱</span></a></div>
+    <dl class="opt_info">
+        <dt>还没有收到确认邮件?</dt>
+        <dd>1.到垃圾邮件目录里找找，或者<a id="sendmail" href="/signup/sendmail?&amp;<%=@user.email%>&amp;resend=1">点击这里</a>重新发送注册确认邮件</dd>
+        <dd>2.登录您<%=@user.email%>的邮箱，向 sinasignup@vip.sina.com 写一封任意内容的邮件进行验证。两分钟内您的账户将被自动验证。验证成功后请<a target="_blank" href="/login">登录</a></dd>
+        <dd>3.如果您始终无法验证成功，请<a target="_blank" href="/register">重新注册</a>。</dd>
+    </dl>
+</div>
+<!--/邮箱注册 需要激活-->
+ </div>
+ 
+ 
+ 

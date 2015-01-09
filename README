@@ -1,0 +1,5 @@
+memcached -d -m 128 -l localhost -p 11211 -P /tmp/memcached.pid
+
+memcached -vv -m 128 -l localhost -p 11211 -P /tmp/memcached.pid
+
+

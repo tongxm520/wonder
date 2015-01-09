@@ -1,0 +1,46 @@
+ul, ol, li { margin:0; padding:0 }
+
+.dis{display:block;}
+.undis{display:none;}
+ol, ul { list-style:none; }
+
+
+body { font:14px/1.5 tahoma, sans-serif; color:#333; }
+
+
+#daiwowan { width:980px; margin:0 auto; }
+
+.nav_current{ float:left;background:#FFF; color:#F00; }
+.nav_link{ float:left;}
+.nav_current:hover ,.nav_link:hover{ color:#FF6600;}
+
+
+#dww-menu { width:900px; overflow:hidden; }
+
+
+#dww-menu .mod-hd { 
+	overflow:hidden; 
+	height:30px; 
+	line-height:30px; 
+	position:relative; 
+	background:url(/images/bg_repeat.png) repeat-x 0 0;
+}
+
+#dww-menu .mod-hd li { 
+float:left;  
+cursor:pointer; 
+text-align:center; 
+height:30px; 
+line-height:30px; 
+padding:0 10px; 
+letter-spacing:1px; 
+text-transform:uppercase; 
+border-right:1px #dcdcdc solid; 
+}
+
+
+#dww-menu .mod-bd { padding:5px 10px; }
+#dww-menu .mod-bd div {color:#BFBFBF; line-height:24px; }
+#dww-menu .mod-bd div.show { display:block; }
+
+

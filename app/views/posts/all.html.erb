@@ -1,0 +1,81 @@
+<%@posts.each do |p|%>
+<div id="post_<%=p.id%>" class="post-list">
+  <div class="post-module">
+    <div class="post-operate">
+    </div>
+    <div class="post-module-title">
+       <h4><a href="<%=display_user_post_path(@user,p)%>"><%=p.subject%></a></h4>
+       <p>
+          <span><%=p.created_at.china_time%></span>
+						<span>分类：<%=p.category_name %></span>
+						<span>权限：<%=Post::ACCESS[p.access]%></span>
+       </p>
+    </div>
+  </div>
+  <div class="post-intro">
+    <div class="content"><%=truncate(strip_tags(p.content), :length => 200)%></div>
+   </div>
+</div>
+<%end%>
+
+<style type="text/css">
+.post-list {
+    border-bottom: 1px solid #D8DFEA;
+    margin-bottom: 20px;
+    padding: 0 0 10px;
+}
+
+.post-module-title {
+    width: 550px;
+}
+
+.post-module p span {
+    padding-right: 10px;
+    font-size:14px;
+    color:#999;
+}
+.post-operate {
+  display:block;
+  float: right;
+  margin-top: 10px;
+}
+
+.post-intro .content {
+    line-height: 1.8;
+    font-size: 14px;
+}
+/*---------btn--------------------------------*/
+ .btn_sub, .btn_sub span {
+    background-image: url("/images/reg_btn.png");
+    background-repeat: no-repeat;
+    display: inline-block;
+    font-size: 14px;
+    height: 42px;
+    line-height: 42px;
+}
+
+ .btn_sub {
+    color: #FFFFFF;
+    padding-left: 68px;
+}
+
+.btn_sub span {
+    background-position: right -60px;
+    color: #FFFFFF;
+    padding-right: 68px;
+}
+
+.btn_sub:hover {
+    background-position: 0 -120px;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+ .btn_sub:hover span {
+    background-position: right -180px;
+    color: #FFFFFF;
+}
+
+/*--------------------------------------------------------*/
+
+</style>

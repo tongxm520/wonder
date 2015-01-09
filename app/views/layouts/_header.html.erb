@@ -1,0 +1,39 @@
+<div id="demo-container">
+	<div class="search right">
+		<form method="get" id="search" action="#">
+			<span>
+			<input type="text" name="s" id="s" />
+			<input name="keyword" type="image" src="/images/search.gif" value="Go" id="searchsubmit" class="btn"  />
+			</span>
+		</form>
+		<div class="clr"></div>
+	</div>
+
+	<div id="menu">
+		<ul class="menu">
+			<li><a href="#" class="parent"><span>找人</span></a>
+					<div><ul>
+						  <li><a href="/friend/search"><span>查找朋友</span></a></li>
+						  <li><a href="/friend/invite"><span>邀请朋友</span></a></li>
+						  <li><a href="/friend/know"><span>我的人脉</span></a></li>
+					</ul></div>
+			</li>
+			<li><a href="#" class="parent"><span>帐号</span></a>
+					<div><ul>
+						  <li><a href="<%=account_user_path(current_user)%>"><span>账户设置</span></a></li>
+						  <li><a href="#"><span>隐私设置</span></a></li>
+						  <li><a href="<%=logout_url%>"><span>退出</span></a></li>
+					</ul></div>
+			</li>
+		</ul>
+	</div>
+
+	<div class="clr"></div>
+
+	<ul id="simple-menu">
+		<li><a href="<%=user_path(current_user)%>" title="首页">首页</a></li>
+		<li><a href="<%=profile_user_path(current_user)%>" title="个人主页">个人主页</a></li>
+		<li><a href="/friend/search" title="好友">好友</a></li>
+		<li><a href="#" title="消息">消息</a></li>
+	</ul>			
+</div>

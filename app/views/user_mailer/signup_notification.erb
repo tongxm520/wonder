@@ -1,0 +1,15 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+  <head>
+    <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+  </head>
+  <body>
+    <h1> 万达网注册激活确认</h1>
+    尊敬的<%=@user.name%>，您好！<br />
+    <p>
+      欢迎加入万达网（Wonder）社区，您只需点击下面的确认链接即可完成账号激活:
+      <%address = "#{@base_url}#{activate_user_path(@user.activation_code)}" %>
+       <a onmousedown="javascript:event.cancelBubble=true;" target="_blank" href="<%=address%>"><%=address%></a>
+       (如果无法点击该URL链接地址，请将它复制并粘帖到浏览器（如IE）的地址输入框，然后单击回车即可。）
+  </body>
+</html> 

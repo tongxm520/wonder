@@ -1,0 +1,17 @@
+<%replies.each_with_index do |r,i|%>
+		<div id="reply-<%=r.id%>" class="reply-item comment-item">
+			 <div class="kxCommentAvatar">
+					 <%logo = r.user_logo&&r.user_logo!="" ? r.user_logo : "/images/cartman.jpg"%>
+						<div class="kxAvatar_50"><%= image_tag(logo)%></div>	
+				 </div>
+				 <div class="kxCommentContent">		
+						 <div class="kxComment_Text">
+								 <p class="kxComment_words"><a href="/home/79940848.html" class="sl2"><%=r.user_name%></a>： <span data-sigil="commentContent"><%=r.content%></span></p>
+								 <p><%if i+1 >= count%>
+								 <a href="javascript:void(0)" onclick="toggle_form('<%=c.id%>');" class="replyLink sl2">回复</a>
+								 <%end%>
+								 <span title="" class="time"><%=r.created_at.china_time%></span></p>
+						 </div>	
+				 </div>	                
+	 </div>
+<%end%>

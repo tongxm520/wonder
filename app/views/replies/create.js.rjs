@@ -1,0 +1,4 @@
+page.replace_html "comment-#{params[:comment_id]}",:partial=>"replies", :locals =>{:replies=>@replies,:c=>@comment,:count=>@replies.count}
+page << "document.getElementById('reply_content#{params[:comment_id]}').value=''"
+page << "document.getElementById('reply-form#{params[:comment_id]}').style.display='none'"
+

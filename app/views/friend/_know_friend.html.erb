@@ -1,0 +1,103 @@
+<div class="findFrdMkList">
+  <ul class="clearfix list">	
+     <%@users.each do |user|%>		
+			<li id="user<%=user.id%>">
+			<%img = user.medium_logo_path&&user.medium_logo_path!="" ? user.medium_logo_path : "/images/120-120.jpg"%>
+			<p><a title="<%=user.name%>" class="face120" href="<%=profile_user_path(user)%>"><img alt="" src="<%=img%>"></a></p>
+			<p><a class="sl" href="<%=profile_user_path(user)%>"><%=user.name%></a></p>
+			<div class="clearfix frdOpts_link">
+			<a href="#" class="sl2 l frdOpts_info">资料<span class="c9">(2个共同好友)</span></a>
+			</div>
+			<p><i class="icoadd"></i><a onclick="add_friend('<%=user.id%>');" class="sl2 addfriend" href="javascript:void;">加为好友</a></p>
+			</li>
+			<%end%>
+  </ul>
+</div>
+
+<script type="text/javascript">
+
+function add_friend(id){
+  jQuery.ajax({
+  type:"post",
+  url:"/friend/add_friend",
+  dataType: "json", 
+  data:{user_id: id},
+  success:function (result, textStatus) {
+		if(textStatus == "success"){
+			jQuery("#user"+result.jsonReturn[0]).remove();
+		}
+   }
+  });
+}
+</script>
+
+<style type="text/css">
+
+.findFrdMkList {
+    overflow: hidden;
+    width: 800px;
+    margin-left: 20px !important;
+}
+
+
+.clearfix:after {
+    clear: both;
+    content: ".";
+    display: block;
+    font-size: 0;
+    height: 0;
+    line-height: 0;
+    visibility: hidden;
+}
+.clearfix {
+    display: block;
+}
+ul, li {
+    list-style: none outside none;
+}
+
+
+/*.findFrdMkList ul {
+    margin-left: 12px;
+    width: 790px;
+}
+
+.findFrdMkList ul li {
+    float: left;
+    height: 205px;
+    margin-bottom: 15px;
+    margin-right: 12px;
+    padding-left: 7px;
+    width: 133px;
+}*/
+
+.list{
+  margin-left: 12px;
+  width:800px;
+  overflow:hidden;
+  zoom:1;
+} 
+  
+.list li{
+	float:left;
+	width:190px;
+	padding: 5px;
+	line-height: 1px;
+} 
+.findFrdMkList .icoadd {
+    background: url("/images/spt_cmdfrd.png") no-repeat scroll 0 0 rgba(0, 0, 0, 0);
+    display: inline-block;
+    height: 9px;
+    margin-right: 2px;
+    margin-top: -2px;
+    overflow: hidden;
+    vertical-align: middle;
+    width: 9px;
+}
+
+</style>
+
+
+
+
+

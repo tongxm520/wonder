@@ -1,0 +1,147 @@
+<%= javascript_include_tag "/kindeditor/kindeditor.js" %> 
+<%= stylesheet_link_tag "/kindeditor/examples/index.css" %>
+
+<div class="kxAppHeader">
+	<b><%=operate%></b>
+</div>
+
+<%=form_for @post,:as=>:post, :url=>url, :method=>method,:html=>{:name=>"postform"} do |f|%>
+<div class="post-edit">
+  <div class="edit_line">
+			<div class="edit_tit">标题：</div>
+			<div><span class="it_s">
+			<%= f.text_field :subject,:class=>"it2",:onblur=>"this.className='it2';",
+			:onfocus=>"this.className='it1';" ,:size=>"52"%>
+			</span></div>
+		</div>
+		
+		<div class="edit_line">
+			<div class="edit_tit">内容：</div>
+			<div><span class="it_s">
+			  <%= f.text_area :content,:cols=>"60",:rows=>"14",:id=>"content",
+			  :style=>"max-width:550px;height:260px;visibility:hidden;"%>
+			</span></div>
+		</div>
+  
+  <div class="edit_line">
+			<div class="edit_tit">分类：</div>
+			<%=select_tag "post[category_id]",options_for_select(category_options,
+			:selected=>(@post ? @post.category_id : 0))%>
+		</div>
+		
+		<div class="edit_line">
+			<div class="edit_tit">权限：</div>
+			<%=select_tag "post[access]",options_for_select(access_options,
+			:selected=>(@post ? @post.access : 0))%>
+		</div>
+		
+		<div class="edit_line">
+			<div class="edit_tit">&nbsp;</div>
+			<a id="sub-form" class="btn_sub" href="javascript:void(0);"><span>保存发布</span></a>
+		</div>	
+</div>
+<%end%>
+
+<style type="text/css">
+.kxAppHeader {
+    border-bottom: 1px solid #D8DFEA;
+    font-size: 14px;
+    margin-bottom: 9px;
+    overflow: auto;
+    padding: 9px 0;
+}
+
+
+.post-edit .edit_line {
+    margin-top: 35px;
+}
+.post-edit .edit_btn_line {
+    padding-left: 100px;
+}
+.post-edit .edit_tit {
+    color: #666666;
+    float: left;
+    font-size: 14px;
+    text-align: right;
+    width: 100px;
+}
+
+.it_s {
+    border: 1px solid #808080;
+    display: table;
+}
+
+.it1 {
+    background: none repeat scroll 0 0 #FFFFFF;
+    color: #333333;
+}
+
+.it2 {
+    background: none repeat scroll 0 0 #FFFFFF;
+    border-top: 1px solid #FFFFFF;
+    border-left: 1px solid #FFFFFF;
+    color: #333333;
+}
+
+/*---------btn--------------------------------*/
+ .btn_sub, .btn_sub span {
+    background-image: url("/images/reg_btn.png");
+    background-repeat: no-repeat;
+    display: inline-block;
+    font-size: 14px;
+    height: 42px;
+    line-height: 42px;
+}
+
+ .btn_sub {
+    color: #FFFFFF;
+    padding-left: 68px;
+}
+
+.btn_sub span {
+    background-position: right -60px;
+    color: #FFFFFF;
+    padding-right: 68px;
+}
+
+.btn_sub:hover {
+    background-position: 0 -120px;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+ .btn_sub:hover span {
+    background-position: right -180px;
+    color: #FFFFFF;
+}
+
+/*--------------------------------------------------------*/
+
+</style>
+
+<script type="text/javascript">
+KE.show({
+  id : 'content',
+  imageUploadJson : '/posts/upload',
+  allowFileManager : false,
+  afterCreate : function(id) {
+    KE.event.ctrl(document, 13, function() {
+      KE.util.setData(id);
+      document.forms['example'].submit();
+    });
+    KE.event.ctrl(KE.g[id].iframeDoc, 13, function() {
+      KE.util.setData(id);
+      document.forms['example'].submit();
+    });
+  }
+});
+  
+jQuery(document).ready(function(){
+  var a = jQuery("#sub-form");
+  a.click(function(){
+		 document.postform.submit();  
+   });  
+});
+</script>
+
+

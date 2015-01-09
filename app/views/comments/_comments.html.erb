@@ -1,0 +1,138 @@
+<%@comments.each  do |c|%>
+	<%replies = c.replies.order("replies.created_at desc")%>
+	<%count = replies.count%>
+	<div class="comment-item">
+	 <div class="kxCommentAvatar">
+	 <%img = c.user_logo&&c.user_logo!="" ? c.user_logo : "/images/cartman.jpg"%>
+			<div class="kxAvatar_50"><%= image_tag(img)%></div>	
+	 </div>
+	 <div class="kxCommentContent">		
+			 <div class="kxComment_Text">
+					 <p class="kxComment_words"><a href="/home/79940848.html" class="sl2"><%=c.user_name%></a>： <span data-sigil="commentContent">
+					 <%=c.content%>
+					 </span></p>
+					 <p><%unless count >0 %>
+					 <a href="javascript:void(0)" onclick="toggle_form('<%=c.id%>');" class="replyLink sl2">回复</a>
+					 <%end%><span title="" class="time"><%=c.created_at.china_time%></span></p>
+			 </div>	
+	 </div>		
+	</div>
+
+  
+  <div id="comment-<%=c.id%>">
+	<%if count > 0%>
+		<%=render :partial=>"replies/replies" ,:locals =>{:replies=>replies,:c=>c,:count=>count}%>
+	<%end%>
+	</div>
+	
+	<div>
+    <div id="reply-form<%=c.id%>" style="display:none;">
+				<%=form_for @reply,:as=>:reply,:remote => true , :url=>comment_replies_path(c), :method=>"post",:html=>{:name=>"replyform"} do |f|%>
+				  <input type="hidden" value="<%=current_user.id%>" name="reply[user_id]">
+	       <input type="hidden" value="<%=current_user.name%>" name="reply[user_name]">
+	       <input type="hidden" value="<%=current_user.small_logo_path%>" name="reply[user_logo]">
+	      <input type="hidden" value="<%=c.post.id%>" name="reply[post_id]">
+					<div class="post-edit">
+							<div class="edit_line">
+								<div>
+									<%= f.text_area :content,:style=>"overflow-y: auto; height: 60px;width:400px; overflow-x: hidden; word-wrap: break-word; resize: none; color: rgb(169, 169, 169);margin-left:55px;",:id=>"reply_content#{c.id}"%>
+								</div>
+							</div>
+		
+							<div class="edit_line">
+								<div style="float:right;margin-right:250px;"><button tabindex="6" class="normal" type="submit"><em><span><b><i>回复</i></b></span></em></button></div>
+								<div></div>
+							</div>	
+					</div>
+					<%end%>
+			</div>
+  </div>
+	<br />
+<%end%>	
+
+
+<style type="text/css">
+#comment-list {
+  display: block;
+  width: 700px;
+  height: auto;
+}
+
+.comment-item {
+    border-top: 1px solid #EAEAEA;
+    margin-top: 0;
+    padding-top: 5px;
+}
+
+.reply-item {
+  margin-left: 70px;
+}
+
+.kxAvatar_50 {
+    background: none repeat scroll 0 0 rgba(0, 0, 0, 0);
+    display: inline-block;
+    height: 50px;
+    overflow: hidden;
+    width: 50px;
+}
+.kxAvatar_50 img {
+    border-radius: 4px;
+    height: 50px;
+    width: 50px;
+}
+
+.kxComment_Text {
+    font-size: 12px;
+    margin: -3px 0 0;
+}
+
+.kxComment_Text p {
+    line-height: 18px;
+    word-break: break-all;
+    word-wrap: break-word;
+}
+
+.kxComment_Text p.kxComment_words {
+    min-height: 21px;
+}
+
+.kxComment_Text .time {
+    font-size: 10px;
+    margin-left:5px;
+}
+
+.kxCommentAvatar {
+    float: left;
+    margin-right: 8px;
+    margin-left: 0;
+    margin-top: 10px;
+}
+
+.kxCommentContent {
+    display: table-cell;
+    vertical-align: top;
+    width: 10000px;
+    word-break: break-all;
+    word-wrap: break-word;
+    padding-top: 1px;
+}
+
+a.sl2 {
+  color: blue;
+  text-decoration: none;
+}
+
+</style>
+
+<script type="text/javascript">
+function toggle_form(id){
+  if(jQuery('#reply-form'+id).css("display")=="none"){
+    jQuery('#reply-form'+id).css("display","block")  
+  }else {
+    jQuery('#reply-form'+id).css("display","none")
+  }  
+}
+</script>
+
+
+
