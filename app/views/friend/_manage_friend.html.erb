@@ -23,20 +23,27 @@
 				<a class="sl2 l" title="未分组好友" href="/friend/manage?group=0">未分组好友</a>
 				<span class="c9 r">24</span>
 				</li>
+				<%@grps.each do |g|%>
+				<li class="no_grp opcls">
+				<a class="sl2 l" title="<%=g.name%>" href="/friend/manage?group=<%=g.id%>"><%=g.name%></a>
+				<span class="c9 r">0</span>
+				</li>
+				<%end%>
 			</ul>
 			
 			
-			<b class="py-btn-inner"><span class="btn-txt">创建分组</span></b>
+			<b class="py-btn-inner" onclick="toggle_div()"><span class="btn-txt">创建分组</span></b>
 			
-			<div id="create_group_div" style="display: block;" class="group-action group-create">
+			<div id="create_group_div" style="display: none;" class="group-action group-create">
+				<form action="/friend/create_group" method="post" name="groupform">
 				<b class="py-fluid-input"><b class="py-fluid-input-inner">
-					<input type="text" maxlength="6" id="create_gname" onkeyup="CheckInputCount(this,6)" class="text">
+					<input type="text" maxlength="6" id="create_gname" onkeyup="CheckInputCount(this,6)" class="text" name="group[name]">
 				</b></b>
 				<p class="act">
-					<a onclick="createGroup();return false;" class="py-btn py-btn-deep" href="#nogo"><b class="py-btn-inner"><span class="btn-txt">保存</span></b></a>
+					<a onclick="createGroup();" class="py-btn py-btn-deep" href="#nogo"><b class="py-btn-inner"><span class="btn-txt">保存</span></b></a>
 					<a onclick="hideCreateGroup();return false;" href="#nogo">取消</a>
 				</p>
-				<span class="total-num"><span id="create_gname_num">0</span>/6</span>
+      </form>
 			</div>
 			
 			<ul class="fri_type_list mb10">
@@ -82,7 +89,7 @@
 						  <div class="ext">
 						  <div class="actions">
 						  <div class="change-group">
-									<a class="change-act" onclick="toggle_box('<%=f.id%>')" href="javascript:void"><span id="group<%=f.id%>" class="changed"><%=Group::DefaultGroup[@groups[f.id]]%></span><i class="arrow-down"></i></a>
+									<a class="change-act" onclick="toggle_box('<%=f.id%>')" href="javascript:void"><span id="group<%=f.id%>" class="changed"><%=@groups[f.id]>0 ? Group.find(@groups[f.id]).name : Group::DefaultGroup[@groups[f.id]]%></span><i class="arrow-down"></i></a>
 									<div style="display:none;" id="list<%=f.id%>" class="group-list">
 											<div class="near_tags">
 													<a onclick="change_group('<%=f.id%>','-1')" href="javascript:void">
@@ -91,6 +98,10 @@
 													<span class="gl-name">普通朋友</span></a>
 													<a onclick="change_group('<%=f.id%>','0')" href="javascript:void">
 													<span class="gl-name">未分组</span></a>
+													<%@grps.each do |g|%>
+													<a onclick="change_group('<%=f.id%>','<%=g.id%>')" href="javascript:void">
+													<span class="gl-name"><%=g.name%></span></a>
+													<%end%>
 											</div>
 									</div>
 						  </div>
@@ -114,10 +125,26 @@
 <script type="text/javascript">
 function toggle_box(id){
   if(jQuery('#list'+id).css("display")=="none"){
-    jQuery('#list'+id).css("display","block")  
+    jQuery('#list'+id).css("display","block") ; 
   }else {
-    jQuery('#list'+id).css("display","none")
+    jQuery('#list'+id).css("display","none");
   }  
+}
+
+function toggle_div(){
+  if(jQuery('#create_group_div').css("display")=="none"){
+    jQuery('#create_group_div').css("display","block") ; 
+  }else {
+    jQuery('#create_group_div').css("display","none");
+  }  
+}
+
+function hideCreateGroup(){
+  jQuery('#create_group_div').css("display","none");
+}
+
+function createGroup(){
+  document.groupform.submit();   
 }
 
 function change_group(id,grp){

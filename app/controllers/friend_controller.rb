@@ -7,6 +7,7 @@ class FriendController < ApplicationController
     @owner="我"
     @user = current_user
     @groups = Friendship.find_group(current_user.id)
+    @grps = current_user.groups
 
     @friends = @user.friends(params[:group],current_user.id)
     render :layout=>'user'
@@ -60,12 +61,20 @@ class FriendController < ApplicationController
   
   def change_group
     f = Friendship.find_by_user_id_and_friend_id(current_user.id,params[:user_id])
+    _group = params[:group].to_i
     if f
-      f.group_id=params[:group].to_i
+      f.group_id=_group
       f.save
     end
-    group = Group::DefaultGroup[params[:group].to_i]
+    group = _group>0 ? Group.find(_group).name : Group::DefaultGroup[_group]
     render :json => {:jsonReturn =>[params[:user_id],group] }.to_json
+  end
+  
+  def create_group
+    params[:group][:user_id]=current_user.id
+    g=Group.new(params[:group])
+    g.save
+    redirect_to "/friend/manage"
   end
 end
 

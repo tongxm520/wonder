@@ -97,6 +97,7 @@ Wonder::Application.routes.draw do
   post '/friend/add_friend' =>"friend#add_friend"
   post '/friend/decide' =>"friend#decide"
   post '/friend/change_group' =>"friend#change_group"
+  post '/friend/create_group' =>"friend#create_group"
   
   root :to => "welcome#login"
 
