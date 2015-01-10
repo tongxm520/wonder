@@ -2,4 +2,22 @@ memcached -d -m 128 -l localhost -p 11211 -P /tmp/memcached.pid
 
 memcached -vv -m 128 -l localhost -p 11211 -P /tmp/memcached.pid
 
+------------------------------------------------------
+You asked me to pull without telling me which branch you
+want to merge with, and 'branch.master.merge' in
+your configuration file does not tell me, either. Please
+specify which branch you want to use on the command line and
+try again (e.g. 'git pull <repository> <refspec>').
+See git-pull(1) for details.
+--------------------------------------------------------------------
+mkdir wonder
+cd wonder
+git init
+
+git pull git@github.com:tongxm520/wonder.git
+git add .
+git commit -a -m "wonder"
+git push git@github.com:tongxm520/wonder.git
+------------------------------------------------------------
+
 
