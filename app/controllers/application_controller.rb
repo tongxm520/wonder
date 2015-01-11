@@ -35,13 +35,20 @@ end
 
 
 =begin
-ApplicationController.new.search_topics(Post,{:category_id=>1},'with')
-ApplicationController.new.search_topics(Post,{},'with')
-ApplicationController.new.search_topics(Post,{},'with', :limit=>3)
-ApplicationController.new.search_topics(Post,{},'with',:per_page =>10,:page => 1)
+ApplicationController.new.search_topics(Post,{:category_id=>1},'大家')
+ApplicationController.new.search_topics(Post,{},'大家')
+ApplicationController.new.search_topics(Post,{},'大家', :limit=>3)
+ApplicationController.new.search_topics(Post,{},'大家',:per_page =>3,:page => 1)
+ApplicationController.new.search_topics(Post,{:category_id=>1,:user_id=>2},'大家')
 
-ApplicationController.new.search_topics(Post,{:category_id=>3},'面试')
-ApplicationController.new.search_topics(Post,{:category_id=>1},'面试')
+
+ApplicationController.new.search_topics(Post,{:user_id=>3},'面试')
+ApplicationController.new.search_topics(Post,{:user_id=>1},'面试')
 ApplicationController.new.search_topics(Post,{:category_id=>1,:user_id=>2},'面试')
+
+索引comment的content
+ApplicationController.new.search_topics(Post,{},'陌生')
 =end
+
+
 

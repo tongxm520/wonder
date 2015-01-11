@@ -19,5 +19,13 @@ git add .
 git commit -a -m "wonder"
 git push git@github.com:tongxm520/wonder.git
 ------------------------------------------------------------
+development:
+	enable_star: 1
+	min_prefix_len: 0
+	min_infix_len: 2
+	min_word_len: 1
+	max_results: 70000
+	morphology: none
+	listen: localhost:3312
 
 
