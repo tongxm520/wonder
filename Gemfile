@@ -36,3 +36,16 @@ gem 'memcache-client', '1.8.5'
 # group :development, :test do
 #   gem 'webrat'
 # end
+
+group :test, :development do  
+  gem 'rspec-rails', '2.8.0'
+end
+
+
+
+
+
+
+
+
+
