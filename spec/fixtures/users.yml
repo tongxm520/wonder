@@ -1,0 +1,182 @@
+<% SALT="NaCL" unless defined?(SALT) %>
+sam:
+  id: 1
+  email: "tongxiaoming520@163.com"
+  name: "童小明"
+  salt: <%= SALT %>
+  encrypted_password: <%=User.encrypt_password('icesword', SALT) %>
+  status: "1"
+  activated_at: <%=Time.now%>
+  city: "上海"
+  gender: "0"
+  birth: "1970-08-12"
+  agree: "1"
+chen:
+  id: 2
+  email: "ch19851818@gmail.com"
+  name: "武松"
+  salt: <%= SALT %>
+  encrypted_password: <%= User.encrypt_password('chenchen' , SALT) %>
+  status: "0"
+  activated_at: <%=Time.now%>
+  city: "上海"
+  gender: "0"
+  birth: "1970-08-12"
+  agree: "1"
+test1:
+  id: 3
+  email: "ch19851818@yahoo.com.cn"
+  name: "李沿海"
+  salt: <%= SALT %>
+  encrypted_password: <%= User.encrypt_password('testtest' , SALT) %>
+  status: "2"
+  activated_at: <%=Time.now%>
+  city: "上海"
+  gender: "0"
+  birth: "1970-08-12"
+  agree: "1"
+test2:
+  id: 4
+  email: "orez99@163.com"
+  name: "麦子加菲"
+  salt: <%= SALT %>
+  encrypted_password: <%= User.encrypt_password('831027' , SALT) %>
+  status: "2"
+  activated_at: <%=Time.now%>
+  city: "上海"
+  gender: "0"
+  birth: "1970-08-12"
+  agree: "1"
+qiu:
+  id: 5
+  email: "magnet388@126.com"
+  name: "邱克浩"
+  salt: <%= SALT %>
+  encrypted_password: <%=User.encrypt_password('qiukhao', SALT) %>
+  status: "1"
+  activated_at: <%=Time.now%>
+  city: "上海"
+  gender: "0"
+  birth: "1970-08-12"
+  agree: "1"  
+abc:
+  id: 6
+  email: "abc520@163.com"
+  name: "童大名"
+  salt: <%= SALT %>
+  encrypted_password: <%=User.encrypt_password('icefsfsword', SALT) %>
+  status: "2"
+  activated_at: <%=Time.now%>
+  city: "上海"
+  gender: "1"
+  birth: "1989-08-12"
+  agree: "1"
+def:
+  id: 7
+  email: "def@gmail.com"
+  name: "武大郎"
+  salt: <%= SALT %>
+  encrypted_password: <%= User.encrypt_password('chsefsfnchen' , SALT) %>
+  status: "0"
+  activated_at: <%=Time.now%>
+  city: "北京"
+  gender: "0"
+  birth: "1988-08-12"
+  agree: "1"
+ghi:
+  id: 8
+  email: "chghi@yahoo.com.cn"
+  name: "李严红"
+  salt: <%= SALT %>
+  encrypted_password: <%= User.encrypt_password('teswettest' , SALT) %>
+  status: "3"
+  activated_at: <%=Time.now%>
+  city: "南京"
+  gender: "0"
+  birth: "1990-08-12"
+  agree: "1"
+hello:
+  id: 9
+  email: "hello99@163.com"
+  name: "王双风"
+  salt: <%= SALT %>
+  encrypted_password: <%= User.encrypt_password('834533027' , SALT) %>
+  status: "0"
+  activated_at: <%=Time.now%>
+  city: "上海"
+  gender: "1"
+  birth: "1986-08-12"
+  agree: "1"
+qiu2:
+  id: 10
+  email: "qiu3ke88@126.com"
+  name: "邱浩"
+  salt: <%= SALT %>
+  encrypted_password: <%=User.encrypt_password('qiu3456khao', SALT) %>
+  status: "1"
+  activated_at: <%=Time.now%>
+  city: "湖州"
+  gender: "0"
+  birth: "1987-08-12"
+  agree: "1"
+qiu11:
+  id: 11
+  email: "qiu113ke88@126.com"
+  name: "瞿银"
+  salt: <%= SALT %>
+  encrypted_password: <%=User.encrypt_password('123456', SALT) %>
+  status: "0"
+  activated_at: <%=Time.now%>
+  city: "广州"
+  gender: "0"
+  birth: "1977-08-12"
+  agree: "1"
+qiu12:
+  id: 12
+  email: "qiu11312ke88@126.com"
+  name: "娄一笑"
+  salt: <%= SALT %>
+  encrypted_password: <%=User.encrypt_password('123456', SALT) %>
+  status: "3"
+  activated_at: <%=Time.now%>
+  city: "广州"
+  gender: "1"
+  birth: "1967-08-12"
+  agree: "1"
+qiu13:
+  id: 13
+  email: "qiu11312313@126.com"
+  name: "王二"
+  salt: <%= SALT %>
+  encrypted_password: <%=User.encrypt_password('123456', SALT) %>
+  status: "0"
+  activated_at: <%=Time.now%>
+  city: "广州"
+  gender: "0"
+  birth: "1977-09-12"
+  agree: "1"
+qiu14:
+  id: 14
+  email: "qiu11414ke88@126.com"
+  name: "赵大雷"
+  salt: <%= SALT %>
+  encrypted_password: <%=User.encrypt_password('123456', SALT) %>
+  status: "2"
+  activated_at: <%=Time.now%>
+  city: "桂林"
+  gender: "0"
+  birth: "1982-08-12"
+  agree: "1" 
+qiu15:
+  id: 15
+  email: "qiu1515@126.com"
+  name: "钱伟豪"
+  salt: <%= SALT %>
+  encrypted_password: <%=User.encrypt_password('123456', SALT) %>
+  status: "0"
+  activated_at: <%=Time.now%>
+  city: "桂林"
+  gender: "0"
+  birth: "1984-08-12"
+  agree: "1" 
+  
