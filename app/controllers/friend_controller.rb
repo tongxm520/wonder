@@ -8,7 +8,13 @@ class FriendController < ApplicationController
     @user = current_user
     @groups = Friendship.find_group(current_user.id)
     @grps = current_user.groups
-
+    if params[:group].nil? or params[:group].to_i > -4
+       @main_template = "friend_list"
+    elsif params[:group].to_i==-4
+       @main_template = "pending_list"
+    elsif params[:group].to_i==-5 or params[:group].to_i==-6
+       @main_template = "visit_list"
+    end
     @friends = @user.friends(params[:group],current_user.id)
     render :layout=>'user'
   end

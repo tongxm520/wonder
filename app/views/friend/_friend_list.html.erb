@@ -1,0 +1,46 @@
+<div style="display:block" class="fri_name_first mb10">
+		<a href="" data-keyword="" class="searchname_href now">全部</a>
+		<%('a'..'z').to_a.each do |i|%>
+		   <a href="/abc/<%=i%>" class="sl2 searchname_href"><%=i.upcase%></a>
+		<%end%>
+</div>
+
+<ul id="friend_list" class="frd-list">
+   <%@friends.each do |f| %>
+  <li style="z-index:1000" id="" class="clearfix">
+    <div class="xpy-media">
+      <%img= f.small_logo_path&&f.small_logo_path!="" ? f.small_logo_path : "/images/cartman.jpg"%>
+			  <a class="img xy_card" target="_blank" href="<%=profile_user_path(f)%>" ><img src="<%=img%>"></a>
+			  
+			  <div class="ext">
+			  <div class="actions">
+			  <div class="change-group">
+						<a class="change-act" onclick="toggle_box('<%=f.id%>')" href="javascript:void"><span id="group<%=f.id%>" class="changed"><%=@groups[f.id]>0 ? Group.find(@groups[f.id]).name : Group::DefaultGroup[@groups[f.id]]%></span><i class="arrow-down"></i></a>
+						<div style="display:none;" id="list<%=f.id%>" class="group-list">
+								<div class="near_tags">
+										<a onclick="change_group('<%=f.id%>','-1')" href="javascript:void">
+										<span class="gl-name">挚交好友</span></a>
+										<a onclick="change_group('<%=f.id%>','-2')" href="javascript:void">
+										<span class="gl-name">普通朋友</span></a>
+										<a onclick="change_group('<%=f.id%>','0')" href="javascript:void">
+										<span class="gl-name">未分组</span></a>
+										<%@grps.each do |g|%>
+										<a onclick="change_group('<%=f.id%>','<%=g.id%>')" href="javascript:void">
+										<span class="gl-name"><%=g.name%></span></a>
+										<%end%>
+								</div>
+						</div>
+			  </div>
+			  <a title="解除好友关系" class="act-del" onclick="return false;" href="#">解除好友关系</a>
+			  </div>
+			  </div>
+			  
+			  <div class="img-txt">
+			  <h4><a class="fn" href="<%=profile_user_path(f)%>"><%=f.name%></a></h4>
+			  </div>
+    </div>
+  </li>
+  <%end%>
+  <br />
+  <br />
+</ul>

@@ -3,28 +3,33 @@
 			<div class="fri_search"><input onblur="this.value='搜索好友'" onfocus="this.value=''" value="搜索好友" id="search_input" type="text"></div>
 			
 			<ul class="fri_type_list mb10" id="group_nav_list">
-				<li class="now opcls">
-				<a class="l" title="全部好友" href="/friend/manage">全部好友</a>
+			  <%klass =  params[:group].nil?||params[:group].to_i==-3 ? "now opcls" : "opcls"%>
+				<li class="<%=klass%>">
+				<a class="l" title="全部好友" href="/friend/manage?group=-3">全部好友</a>
 				<span class="c9 r">25</span>
-				
 				</li>
-				<li class="opcls">
+				<%klass =  params[:group].to_i==-1 ? "now opcls" : "opcls"%>
+				<li class="<%=klass%>">
 				<a class="sl2 l" title="挚交好友" href="/friend/manage?group=-1">挚交好友</a>
 				<span class="c9 r">0</span>
 				</li>
-				<li class="opcls">
+				<%klass =  params[:group].to_i==-2 ? "now opcls" : "opcls"%>
+				<li class="<%=klass%>">
 				<a class="sl2 l" title="普通朋友" href="/friend/manage?group=-2">普通朋友</a>
 				<span class="c9 r">0</span>
 				</li>
-				<li class="opcls">
+				<!--li class="opcls">
 				<a class="sl2 l" title="朋友的朋友" href="#">朋友的朋友</a>
 				<span class="c9 r">0</span>
-				<li class="no_grp opcls">
+				</li-->
+				<%klass =  !params[:group].nil?&&params[:group].to_i==0 ? "now opcls" : "opcls"%>
+				<li class="<%=klass%>">
 				<a class="sl2 l" title="未分组好友" href="/friend/manage?group=0">未分组好友</a>
 				<span class="c9 r">24</span>
 				</li>
 				<%@grps.each do |g|%>
-				<li class="no_grp opcls">
+				<%klass =  params[:group].to_i==g.id ? "now opcls" : "opcls"%>
+				<li class="<%=klass%>">
 				<a class="sl2 l" title="<%=g.name%>" href="/friend/manage?group=<%=g.id%>"><%=g.name%></a>
 				<span class="c9 r">0</span>
 				</li>
@@ -47,78 +52,34 @@
 			</div>
 			
 			<ul class="fri_type_list mb10">
-				<li class="">
-				<a class="sl2 l" title="已发好友请求" href="#">已发好友请求</a>
+			  <%klass =  params[:group].to_i==-4 ? "now opcls" : "opcls"%>
+				<li class="<%=klass%>">
+				<a class="sl2 l" title="已发好友请求" href="/friend/manage?group=-4">已发好友请求</a>
 				<span class="c9 r">19</span>
 				</li>
-				<li class="">
+				<!--li class="">
 				<a class="sl2 l" title="我关注的人" href="#">我关注的人</a>
 				<span class="c9 r">20</span>
 				</li>
 				<li class="">
 				<a class="sl2 l" title="关注我的人" href="#">关注我的人</a>
 				<span class="c9 r">10</span>
-				</li>
-				<li class="">
-				<a class="sl2 l" title="谁来看过我" href="#">谁来看过我</a>
+				</li-->
+				<%klass =  params[:group].to_i==-5 ? "now opcls" : "opcls"%>
+				<li class="<%=klass%>">
+				<a class="sl2 l" title="谁来看过我" href="/friend/manage?group=-5">谁来看过我</a>
 				<span class="c9 r"></span>
 				</li>
-				<li class="">
-				<a class="sl2 l" title="我去看过谁" href="#">我去看过谁</a>
+				<%klass =  params[:group].to_i==-6 ? "now opcls" : "opcls"%>
+				<li class="<%=klass%>">
+				<a class="sl2 l" title="我去看过谁" href="/friend/manage?group=-6">我去看过谁</a>
 				<span class="c9 r"></span>
 				</li>
 			</ul>
 	   
 	</div>
 	<div class="v3-main">
-	    
-	    <div style="display:block" class="fri_name_first mb10">
-					<a href="" data-keyword="" class="searchname_href now">全部</a>
-					<%('a'..'z').to_a.each do |i|%>
-					   <a href="/abc/<%=i%>" class="sl2 searchname_href"><%=i.upcase%></a>
-					<%end%>
-			</div>
-	    
-	    <ul id="friend_list" class="frd-list">
-	       <%@friends.each do |f| %>
-        <li style="z-index:1000" id="" class="clearfix">
-		      <div class="xpy-media">
-		        <%img= f.small_logo_path&&f.small_logo_path!="" ? f.small_logo_path : "/images/cartman.jpg"%>
-						  <a class="img xy_card" target="_blank" href="<%=profile_user_path(f)%>" ><img src="<%=img%>"></a>
-						  
-						  <div class="ext">
-						  <div class="actions">
-						  <div class="change-group">
-									<a class="change-act" onclick="toggle_box('<%=f.id%>')" href="javascript:void"><span id="group<%=f.id%>" class="changed"><%=@groups[f.id]>0 ? Group.find(@groups[f.id]).name : Group::DefaultGroup[@groups[f.id]]%></span><i class="arrow-down"></i></a>
-									<div style="display:none;" id="list<%=f.id%>" class="group-list">
-											<div class="near_tags">
-													<a onclick="change_group('<%=f.id%>','-1')" href="javascript:void">
-													<span class="gl-name">挚交好友</span></a>
-													<a onclick="change_group('<%=f.id%>','-2')" href="javascript:void">
-													<span class="gl-name">普通朋友</span></a>
-													<a onclick="change_group('<%=f.id%>','0')" href="javascript:void">
-													<span class="gl-name">未分组</span></a>
-													<%@grps.each do |g|%>
-													<a onclick="change_group('<%=f.id%>','<%=g.id%>')" href="javascript:void">
-													<span class="gl-name"><%=g.name%></span></a>
-													<%end%>
-											</div>
-									</div>
-						  </div>
-						  <a title="解除好友关系" class="act-del" onclick="return false;" href="#">解除好友关系</a>
-						  </div>
-						  </div>
-						  
-						  <div class="img-txt">
-						  <h4><a class="fn" href="<%=profile_user_path(f)%>"><%=f.name%></a></h4>
-						  </div>
-		      </div>
-        </li>
-        <%end%>
-        <br />
-        <br />
-	    </ul>
-	    
+	  <%=render :partial=>@main_template%>	    
 	</div>
 </div>
 

@@ -21,3 +21,37 @@
 [Sat Aug  2 20:18:00.687 2014] [ 9752] accepting connections
 [Sun Aug  3 13:13:38.059 2014] [ 2586] accepting connections
 [Mon Aug  4 14:34:27.558 2014] [ 2388] accepting connections
+[Sun Jan 11 12:24:13.619 2015] [ 4162] accepting connections
+[Sun Jan 11 12:34:14.589 2015] [ 4162] rotating indices (seamless=1)
+[Sun Jan 11 12:34:14.594 2015] [ 4162] rotating index 'post_delta': success
+[Sun Jan 11 12:34:14.597 2015] [ 4162] rotating index 'post_core': success
+[Sun Jan 11 12:34:14.597 2015] [ 4162] rotating finished
+[Sun Jan 11 12:34:14.632 2015] [ 4162] rotating indices (seamless=1)
+[Sun Jan 11 12:34:14.641 2015] [ 4162] rotating index 'post_delta': success
+[Sun Jan 11 12:34:14.645 2015] [ 4162] rotating index 'post_core': success
+[Sun Jan 11 12:34:14.645 2015] [ 4162] rotating finished
+[Sun Jan 11 12:53:42.418 2015] [ 4162] caught SIGTERM, shutting down
+[Sun Jan 11 12:53:42.419 2015] [ 4162] shutdown complete
+[Sun Jan 11 12:53:42.862 2015] [ 4716] accepting connections
+[Sun Jan 11 12:53:59.483 2015] [ 4716] caught SIGTERM, shutting down
+[Sun Jan 11 12:53:59.483 2015] [ 4716] shutdown complete
+[Sun Jan 11 12:53:59.927 2015] [ 4768] accepting connections
+[Sun Jan 11 12:58:27.326 2015] [ 4768] caught SIGTERM, shutting down
+[Sun Jan 11 12:58:27.326 2015] [ 4768] shutdown complete
+[Sun Jan 11 12:58:27.794 2015] [ 4842] accepting connections
+[Sun Jan 11 13:01:31.920 2015] [ 4842] rotating indices (seamless=1)
+[Sun Jan 11 13:01:31.928 2015] [ 4842] rotating index 'post_delta': success
+[Sun Jan 11 13:01:31.930 2015] [ 4842] rotating index 'post_core': success
+[Sun Jan 11 13:01:31.930 2015] [ 4842] rotating finished
+[Sun Jan 11 13:01:31.959 2015] [ 4842] rotating indices (seamless=1)
+[Sun Jan 11 13:01:31.967 2015] [ 4842] rotating index 'post_delta': success
+[Sun Jan 11 13:01:31.985 2015] [ 4842] rotating index 'post_core': success
+[Sun Jan 11 13:01:31.985 2015] [ 4842] rotating finished
+[Sun Jan 11 13:04:29.713 2015] [ 4842] rotating indices (seamless=1)
+[Sun Jan 11 13:04:29.721 2015] [ 4842] rotating index 'post_delta': success
+[Sun Jan 11 13:04:29.723 2015] [ 4842] rotating index 'post_core': success
+[Sun Jan 11 13:04:29.723 2015] [ 4842] rotating finished
+[Sun Jan 11 13:04:29.753 2015] [ 4842] rotating indices (seamless=1)
+[Sun Jan 11 13:04:29.760 2015] [ 4842] rotating index 'post_delta': success
+[Sun Jan 11 13:04:29.764 2015] [ 4842] rotating index 'post_core': success
+[Sun Jan 11 13:04:29.764 2015] [ 4842] rotating finished

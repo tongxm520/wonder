@@ -82,11 +82,12 @@ class User < ActiveRecord::Base
   end
   
   def friends(group,user_id)
-    unless group
+    _group = group.to_i
+    if group.nil? or _group ==-3
 		   a = self.requesters.where("relationships.status='accepted'")
 		   b = self.requestees.where("relationships.status='accepted'")
 		   return a+b
-    else
+    elsif _group>-3
       fs= Friendship.where("user_id='#{user_id}' and group_id='#{group}'")
       ids = fs.map{|f| f.friend_id }
       return User.all(:conditions=>["id  in (?)",ids]) 

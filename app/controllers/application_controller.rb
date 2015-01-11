@@ -42,6 +42,6 @@ ApplicationController.new.search_topics(Post,{},'with',:per_page =>10,:page => 1
 
 ApplicationController.new.search_topics(Post,{:category_id=>3},'面试')
 ApplicationController.new.search_topics(Post,{:category_id=>1},'面试')
-ApplicationController.new.search_topics(Post,{:category_id=>1,:author_id=>2},'面试')
+ApplicationController.new.search_topics(Post,{:category_id=>1,:user_id=>2},'面试')
 =end
 
