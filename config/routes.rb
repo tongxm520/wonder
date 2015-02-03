@@ -98,6 +98,19 @@ Wonder::Application.routes.draw do
   post '/friend/decide' =>"friend#decide"
   post '/friend/change_group' =>"friend#change_group"
   post '/friend/create_group' =>"friend#create_group"
+  get "/welcome/search" => "welcome#search"
+  get "/welcome/select" => "welcome#select"
+  get "/welcome/show" => "welcome#show"
+  post "/welcome/query" => "welcome#query"
+  get "/welcome/locate" => "welcome#locate"
+  
+  namespace :api do
+    get ':version/users' => 'users#index'
+    post ':version/users' => 'users#create'
+    get ':version/users/:user_id' => 'users#show'
+    put ':version/users/:user_id' => 'users#update'
+    delete ':version/users/:user_id' => 'users#destroy'
+  end
   
   root :to => "welcome#login"
 

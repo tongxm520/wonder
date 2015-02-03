@@ -293,4 +293,49 @@ note_10:
   category_name: "web server"
   access: "everyone"
 
+note_11:
+  id: 11
+  subject: "操作系统原理"
+  content: "全书共由12章构成，第1章概要介绍了操作系统的发展历史、操作系统的基本类型和功能。第2章至第7章分别操作系统的各种功能及其实现原理等。"
+  category_id: 2
+  user_id: 2
+  category_name: "数据库"
+  access: "friend"
+
+note_12:
+  id: 12
+  subject: "计算机网络原理"
+  content: "为了适应计算机科学与技术学科的发展和现代计算机教学的需要，作者在多年大专生、本科生和研究生的计算机网络教学、实践的基础上编写了此书，主要介绍了计算机网络的概念、发展、体系结构及物理层、数据链路层、介质访问子层、网络层、传输层、应用层、局域网组网、网络管理、网络安全和网络控制的原理，旨在提高读者分析问题、解决问题的能力。本书注重计算机网络基本原理的介绍，层次清晰，概念准确，内容丰富，图文并茂，适合学生系统地循序渐进地学习计算机网络各方面的知识。Control 每章后面都有精选的习题。"
+  category_id: 2
+  user_id: 4
+  category_name: "数据库"
+  access: "friend"
+note_13:
+  id: 13
+  subject: "TCP/IP 网络协议"
+  content: "TCP/IP 是供已连接因特网的计算机进行通信的通信协议。
+是指传输控制协议/网际协议 (Transmission Control Protocol / Internet Protocol)。它定义了电子设备（比如计算机）如何连入因特网，以及数据如何在它们之间传输的标准。                     　　TCP/IP的通讯协议
+　　这部分简要介绍一下TCP/IP的内部结构，为讨论与互联网有关的安全问题打下基础。TCP/IP协议组之所以流行，部分原因是因为它可以用在各种各样的信道和底层协议（例如T1和X.25、以太网以及RS-232串行接口）之上。确切地说，TCP/IP协议是一组包括TCP协议和IP协议，UDP（User Datagram Protocol）协议、ICMP（Internet Control Message Protocol）协议和其他一些协议的协议组。"
+  category_id: 3
+  user_id: 2
+  category_name: "rails plugins"
+  access: "friend"
+note_14:
+  id: 14
+  subject: "信息系统"
+  content: "信息系统是一种面广量大的计算机应用系统，管理信息系统、地理信息系统、指挥信息系统、决策支持系统、办公信息系统、科学信息系统、情报检索系统、医学信息系统、银行信息系统、民航订票系统…… Protocol 都属于这个范畴。"
+  category_id: 4
+  user_id: 4
+  category_name: "ruby"
+  access: "friend"
+note_15:
+  id: 15
+  subject: "管理学"
+  content: "管理学TCP是一门指导人们从事管理工作的科学。管理学是一门综合性学科。它涉及的学有有哲学、心理学、人类学、社会学、政治学、经济学、历史、生理学、伦理学、数学、统计学、运筹学、系统学、会计学、理财学、工艺学、计算机应用、教育学和法学等。管理学是一门具有艺术性的学科。管理学是一门不精确的学科。数学就是一门精确学科，只要给出一定的条件，按照一定的方法就能得出确定的结果。但是，管理学不同，在已知条件完全相同时，有可能产生截然不同的结果。管理学是一门应用性学科。管理者要想实施有效的管理活动，不仅要掌握一定的管理知识和理论，而且 要能熟练灵活地将所掌握的管理知识用于实践。"
+  category_id: 1
+  user_id: 3
+  category_name: "web server"
+  access: "everyone"
+  
+  
 

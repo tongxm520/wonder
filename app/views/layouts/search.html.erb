@@ -1,0 +1,287 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Wonder</title>
+<%= javascript_include_tag "/js/jquery.js" %> 
+<%= javascript_include_tag "/jquery-autocomplete/jquery.bgiframe.min.js" %> 
+<%= javascript_include_tag "/jquery-autocomplete/jquery.ajaxQueue.js" %> 
+<%= javascript_include_tag "/jquery-autocomplete/thickbox-compressed.js" %> 
+<%= javascript_include_tag "/jquery-autocomplete/jquery.autocomplete.js" %> 
+
+<%= stylesheet_link_tag "/jquery-autocomplete/jquery.autocomplete.css" %>
+<%= stylesheet_link_tag "/jquery-autocomplete/thickbox.css" %>
+</head>
+<body>
+<table class="post-topic-table">
+  <!--tr>
+    <td width="200px" >         
+      <div>  </div>                      
+    </td>
+    
+    <td>
+      <div class="postarea">
+        <%=#text_field_tag :search_query,"", :class => "query_input",:style => "color: rgb(165, 165, 165);",:autocomplete =>"off"
+          %>
+      </div>
+    </td>
+    
+    <td width="80px" valign="bottom">
+      <%#= submit_tag "搜索", :class => "post-btn"%>
+    </td>
+  </tr-->
+  
+  <tr>
+    <td width="200px" >         
+      <div>  </div>                      
+    </td>
+    
+    <td>
+      <div class="search_box">
+        <%=text_field_tag :query,"", :class => "query_input",
+          :style => "color: rgb(165, 165, 165);",
+          :autocomplete =>"off"
+          %>
+      </div>
+    </td>
+    
+    <td width="80px" valign="bottom">
+    </td>
+  </tr>
+  <!--tr>
+    <td width="200px" >         
+      <div>  </div>                      
+    </td>
+    
+    <td>
+      <div class="postarea">
+        <%#=text_field_tag :select,"", :class => "query_input",
+          :style => "color: rgb(165, 165, 165);",
+          :autocomplete =>"off"
+          %>
+      </div>
+    </td>
+    
+    <td width="80px" valign="bottom">
+      <%#= submit_tag "搜索", :class => "post-btn"%>
+    </td>
+  </tr-->
+</table>
+
+<div id="content">
+</div>
+<div class="main">
+<%= yield %>
+</div>
+</body>
+</html>
+
+<style type="text/css">
+
+input.query_input {
+	-moz-box-sizing: border-box;
+	border: 1px solid #bbbbbb;
+	font-size: 14px;
+	height: 26px;
+	padding: 4px 0 0 3px;
+	width: 445px;
+}
+
+.main {
+  display: block;
+  background-color: #ffffe1;
+  border: 1px solid #40679d;
+  width: 75%;
+  margin: 0 auto;
+  padding: 2px;
+  }
+  
+#result_list{
+  width:442px;
+  list-style:none;
+  border:1px solid #74c9e6;
+  -moz-border-radius:0 0 2px 2px;
+  border-radius:2px;
+  position:absolute;
+  top:29px;
+  left:0px;
+  background:#fff;
+  display:none;
+  }
+
+
+#result_list li{
+  width:100%;
+  height:30px;
+  line-height:30px;
+  text-indent:10px;
+  cursor:pointer;
+  overflow:hidden;
+  }
+
+#result_list .current{background:#baeafb;}
+
+.search_box {position:relative;}
+</style>
+
+<script type="text/javascript">
+function focusText(obj, text){
+  obj.css('color','black'); if(obj.val() == text) obj.val('');
+}
+
+function blurText(obj, text){
+  obj.css('color','#666'); if(obj.val() == '') obj.val(text);
+}
+
+
+$(function() {
+ 
+  function formatItem(row) {
+		return row[0] + " (<strong>id: " + row[1] + "</strong>)";
+	}
+	
+	function formatResult(row) {
+		return row[0].replace(/(<.+?>)/gi, '');
+	}
+ 
+	function format(mail) {
+		return mail.name + " &lt;" + mail.to + "&gt";
+	}
+	$("#select").autocomplete('/welcome/select', {
+		//multiple: true,
+		dataType: "json",
+		parse: function(data) {
+			return $.map(data.emails, function(row) {
+				return {
+					data: row,
+					value: row.name,
+					result: row.name + " <" + row.to + ">"
+				}
+			});
+		},
+		formatItem: function(row, i, max) {
+			return i + "/" + max + ": \"" + row.name + "\" [" + row.to + "]";
+		}
+	}).result(function(e, item) {
+		$("#content").append("<p>selected " + format(item) + "</p>");
+	});
+	
+	
+	
+	$("#search_query").autocomplete('/welcome/search', {
+		minChars: 2,
+		max: 20,
+		//autoFill: true,
+		dataType: "json",
+		//mustMatch: true,
+		matchContains: false,
+		scrollHeight: 220,
+		parse: function(data) {
+			//alert(data.data);
+			return $.map(data.data, function(row) {
+				return {
+					data: row[0]+","+row[1],//处理返回数据
+					result: "["+row[0]+"]"//点击后在搜索框里显示的格式
+				}
+			});
+		},
+		formatItem: function(row, i, max) {
+		  arr = row.split(",");
+		  //搜索suggest里显示的格式
+			return arr[0];
+		}
+	}).result(function(e, item) {
+	  arr = item.split(",");
+	  window.location.href="/welcome/show?id="+arr[1];
+	});
+	
+});
+
+
+jQuery(document).ready(function(){
+  var q=document.getElementById("query");
+  q.oninput=show;//IE 使用onpropertychange事件    
+});
+
+function show(){
+  //alert(this.value);
+  if(strLen(this.value)<2){
+    return false;
+  } 
+	jQuery.ajax({
+	type:"post",
+	url:"/welcome/query",
+	dataType: "json", 
+	data:{query: this.value},
+	success:function (result, textStatus) {
+		if(textStatus == "success"){
+		  if(result.data.length > 0){
+		    jQuery("#result_list").remove();
+		    jQuery(".search_box").append("<ul id='result_list'></ul>");
+		    jQuery("#result_list").show();
+		    for(var i=0;i<result.data.length;i++){
+		      jQuery("#result_list").append("<li>"+result.data[i][0]+"</li>");
+		     }
+		     
+	     list = document.getElementById('result_list');
+       items = list.getElementsByTagName('li');	
+       len = items.length;
+       highlight = 'current';
+       keyInput = document.getElementById('query');
+       
+       clearClassname = function(){
+	        for(var j = 0,el;j < len && (el = items[j]);j++){
+		         el.className = '';
+	          }
+         }
+         
+       for(var i = 0,el;i < len && (el = items[i]);i++){
+						el.onmouseover = function(){
+							clearClassname();
+							this.className = highlight;
+						}
+						el.onmouseout = function(){this.className = '';}
+						el.onclick = function(){
+						  keyInput.value = this.innerHTML;
+						  jQuery("#result_list").hide();
+						  }
+				 }
+				 
+				 /* 关闭提示层 */
+				document.onclick = function(e){
+					var e = e || window.event,
+					eNode = e.target ? e.target : e.srcElement;
+					if(eNode !== keyInput){
+						list.style.display = 'none';
+					 }
+				}
+				 	    
+		  }
+		}
+	 }
+	});
+}
+
+function strLen(str) {
+  var ii = 0;
+  var strLen = str.length;
+  for(var i = 0; i < strLen; i++) {
+    if(str.charCodeAt(i) > 255){
+      ii += 2;
+     }
+    else {
+      ii++;
+    }
+  }
+  return ii;
+}
+
+//alert(e.abc==undefined);
+
+
+</script>
+
+
+
+
+

@@ -8,4 +8,9 @@ describe UsersController do
     get 'show', :id=>users(:sam).id
     response.should render_template('show')
   end
+  
+  it "should redirect_to login when not logged in" do
+    get 'show', :id=>users(:sam).id
+    response.should redirect_to('/login')
+  end
 end

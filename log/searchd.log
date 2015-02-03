@@ -55,3 +55,18 @@
 [Sun Jan 11 13:04:29.760 2015] [ 4842] rotating index 'post_delta': success
 [Sun Jan 11 13:04:29.764 2015] [ 4842] rotating index 'post_core': success
 [Sun Jan 11 13:04:29.764 2015] [ 4842] rotating finished
+[Thu Jan 15 16:20:46.441 2015] [ 3732] accepting connections
+[Thu Jan 15 16:21:42.119 2015] [ 3732] rotating indices (seamless=1)
+[Thu Jan 15 16:21:42.131 2015] [ 3732] rotating index 'post_delta': success
+[Thu Jan 15 16:21:42.139 2015] [ 3732] rotating index 'post_core': success
+[Thu Jan 15 16:21:42.139 2015] [ 3732] rotating finished
+[Thu Jan 15 16:21:42.252 2015] [ 3732] rotating indices (seamless=1)
+[Thu Jan 15 16:21:42.266 2015] [ 3732] rotating index 'post_delta': success
+[Thu Jan 15 16:21:42.283 2015] [ 3732] rotating index 'post_core': success
+[Thu Jan 15 16:21:42.283 2015] [ 3732] rotating finished
+[Fri Jan 16 11:01:35.546 2015] [ 2805] accepting connections
+[Mon Jan 19 09:29:54.650 2015] [ 2588] accepting connections
+[Thu Jan 29 11:52:01.278 2015] [ 2586] accepting connections
+[Fri Jan 30 10:36:40.497 2015] [ 2576] accepting connections
+[Sun Feb  1 21:24:18.057 2015] [ 3190] accepting connections
+[Mon Feb  2 11:40:53.204 2015] [ 3013] accepting connections

@@ -6,7 +6,7 @@
 			<p><a title="<%=user.name%>" class="face120" href="<%=profile_user_path(user)%>"><img alt="" src="<%=img%>"></a></p>
 			<p><a class="sl" href="<%=profile_user_path(user)%>"><%=user.name%></a></p>
 			<div class="clearfix frdOpts_link">
-			<a href="#" class="sl2 l frdOpts_info">资料<span class="c9">(2个共同好友)</span></a>
+			<a href="#" class="sl2 l frdOpts_info"><span class="c9">(<%=@hash[user.id].count%>个共同好友)</span></a>
 			</div>
 			<p><i class="icoadd"></i><a onclick="add_friend('<%=user.id%>');" class="sl2 addfriend" href="javascript:void;">加为好友</a></p>
 			</li>

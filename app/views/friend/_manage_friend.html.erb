@@ -6,7 +6,7 @@
 			  <%klass =  params[:group].nil?||params[:group].to_i==-3 ? "now opcls" : "opcls"%>
 				<li class="<%=klass%>">
 				<a class="l" title="全部好友" href="/friend/manage?group=-3">全部好友</a>
-				<span class="c9 r">25</span>
+				<span class="c9 r">0</span>
 				</li>
 				<%klass =  params[:group].to_i==-1 ? "now opcls" : "opcls"%>
 				<li class="<%=klass%>">
@@ -25,7 +25,7 @@
 				<%klass =  !params[:group].nil?&&params[:group].to_i==0 ? "now opcls" : "opcls"%>
 				<li class="<%=klass%>">
 				<a class="sl2 l" title="未分组好友" href="/friend/manage?group=0">未分组好友</a>
-				<span class="c9 r">24</span>
+				<span class="c9 r">0</span>
 				</li>
 				<%@grps.each do |g|%>
 				<%klass =  params[:group].to_i==g.id ? "now opcls" : "opcls"%>

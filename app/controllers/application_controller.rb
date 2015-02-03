@@ -1,5 +1,3 @@
-require "#{Rails.root.to_s}/lib/authentication_system"
-
 class ApplicationController < ActionController::Base
   #protect_from_forgery
 =begin

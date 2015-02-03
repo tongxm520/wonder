@@ -24,7 +24,7 @@
 				
 			<div id="logo-item">      
 			 <div class="logo-left">
-				<%img = @user.medium_logo_path ? @user.medium_logo_path : "/images/cartman.jpg"%>
+				<%img = @user.medium_logo_path&&@user.medium_logo_path!="" ? @user.medium_logo_path : "/images/cartman.jpg"%>
 				<div><a href="<%=profile_user_path(@user)%>"><img src="<%=img%>" alt="" width="120" height="120" border="0" /></a></div>
 				<div class="item_a">
 				  <a href="#"  title="">发短消息</a>
@@ -46,7 +46,7 @@
 		<div class="wrapper">
 		
 			<div id="menubar">
-				<ul id="menulist">
+				<ul id="menulist" style="height:600px;">
 					<li class="menuitem"><%=link_to "#{@owner}的日志",@owner_url%></li>
 					<li class="menuitem"><%=@owner%>的相册</li>
 					<li class="menuitem"><%=@owner%>的留言板</li>
@@ -54,7 +54,7 @@
 				</ul>
 			</div>
 		
-			<div id="main" style="width:700px;height:600px;">
+			<div id="main" style="width:700px;height:auto;">
 				 <%= yield %>
 			</div>
 		 

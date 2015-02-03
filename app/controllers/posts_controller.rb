@@ -31,6 +31,7 @@ class PostsController < ApplicationController
     @user = User.find(params[:user_id])
     params[:post][:user_id]=params[:user_id]
     c=Category.find(params[:post][:category_id])
+    params[:post][:category_id]=params[:post][:category_id].to_i
     params[:post][:category_name]=c.name
     @post = Post.new(params[:post])
     
@@ -55,6 +56,9 @@ class PostsController < ApplicationController
   end
   
   def update
+    params[:post][:category_id]=params[:post][:category_id].to_i
+    c=Category.find(params[:post][:category_id])
+    params[:post][:category_name]=c.name
     @user = User.find(params[:user_id])
     @post = Post.find(params[:id])
 
@@ -144,7 +148,7 @@ class PostsController < ApplicationController
        @owner_url = user_posts_path(@user) 
       end
     end
-      
+    @friends = @user.friends(nil)
     @comments = Comment.where("post_id='#{params[:id]}'").order("created_at desc") 
     render :layout=>"profile"
   end
@@ -158,6 +162,7 @@ class PostsController < ApplicationController
       @owner_url = user_posts_path(params[:user_id])
     end
     @user = User.find(params[:user_id])
+    @friends = @user.friends(nil)
     @posts = Post.where("user_id = '#{params[:user_id]}'").order("created_at desc")
     render :layout=>"profile"
   end

@@ -15,7 +15,7 @@ class User < ActiveRecord::Base
   attr_reader   :password
 
   validate  :password_must_be_present
-  validate      :email_unique, :on=> :create
+  validate  :email_unique, :on=> :create
   
   before_create	:make_activation_code
   
@@ -63,14 +63,27 @@ class User < ActiveRecord::Base
   def recently_activated?
     @activated
   end
-
-  #已经发送请求或是好友关系的不包含 
+=begin
+select user_id,count(user_id) as same  from friendships where friend_id in (select friend_id from friendships  where user_id=1 ) and user_id in (6,7,8,9,10,16,17,18,19,20) and friend_id<>1 group by user_id order by same desc
+=end
+  #有共同好友的,从好友的好友中找，不包含已经发送请求或是好友关系的 
   def suggested_friends
     rs1=Relationship.where("requester_id='#{self.id}' and (status='pending' or status='accepted')")
     ids1= rs1.map{|r| r.requestee_id}
     rs2=Relationship.where("requestee_id='#{self.id}' and (status='pending' or status='accepted')")
     ids2 = rs2.map{|r| r.requester_id}
-    User.all(:conditions=>["id not in (?)",ids1+ids2+[self.id]]) 
+    rs3 = User.all(:conditions=>["id not in (?)",ids1+ids2+[self.id]]) 
+    ids3 =rs3.map{|r| r.id}
+    _ids3=ids3.join(",")
+    rs=ActiveRecord::Base.connection.execute("select user_id,friend_id  from friendships where friend_id in (select friend_id from friendships  where user_id='#{self.id}' ) and user_id in (#{_ids3}) and friend_id<>'#{self.id}'")
+		hash={}
+		rs.each_with_index do |r,i|
+		   hash[r[0]]=[] if hash[r[0]].nil?
+		   hash[r[0]] << r[1]
+		end
+		users = rs3.select{|r| hash.keys.include? r.id}
+		users.sort_by! {|u| -hash[u.id].count}
+		return 	users,hash
   end
   
   def is_friend_of?(user_id)
@@ -81,19 +94,24 @@ class User < ActiveRecord::Base
     return false 
   end
   
-  def friends(group,user_id)
+  def friends(group)
     _group = group.to_i
     if group.nil? or _group ==-3
 		   a = self.requesters.where("relationships.status='accepted'")
 		   b = self.requestees.where("relationships.status='accepted'")
 		   return a+b
     elsif _group>-3
-      fs= Friendship.where("user_id='#{user_id}' and group_id='#{group}'")
+      fs= Friendship.where("user_id='#{self.id}' and group_id='#{group}'")
       ids = fs.map{|f| f.friend_id }
       return User.all(:conditions=>["id  in (?)",ids]) 
     end
   end
   
+  def self.same_friend(user_id,id)
+    rs=ActiveRecord::Base.connection.execute("select user_id,friend_id  from friendships where friend_id in (select friend_id from friendships  where user_id='#{user_id}' ) and user_id='#{id}' and friend_id<>'#{user_id}'")
+    rs.count
+  end
+
 =begin
 select distinct relationships.requestee_id,friendships.group_id from relationships left join friendships on friendships.relationship_id=relationships.id  where relationships.requester_id=1 and relationships.status='accepted';
 

@@ -2,6 +2,21 @@ memcached -d -m 128 -l localhost -p 11211 -P /tmp/memcached.pid
 
 memcached -vv -m 128 -l localhost -p 11211 -P /tmp/memcached.pid
 
+show create table authors;
+\. /home/simon/students.sql
+查看数据库字符集：
+show variables like 'char%';
+
+启动MySQL：
+cd /usr/local/mysql/bin
+sudo ./mysqld_safe --defaults-file=/etc/my.cnf --user=root
+
+设置开机自动运行：
+cd /usr/local/mysql
+cp support-files/mysql.server /etc/init.d/mysql
+chmod 777 /etc/init.d/mysql
+chkconfig --add mysql
+chkconfig --level 35 mysql on
 ------------------------------------------------------
 You asked me to pull without telling me which branch you
 want to merge with, and 'branch.master.merge' in

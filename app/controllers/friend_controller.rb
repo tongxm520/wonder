@@ -15,7 +15,7 @@ class FriendController < ApplicationController
     elsif params[:group].to_i==-5 or params[:group].to_i==-6
        @main_template = "visit_list"
     end
-    @friends = @user.friends(params[:group],current_user.id)
+    @friends = @user.friends(params[:group])
     render :layout=>'user'
   end
   
@@ -29,7 +29,9 @@ class FriendController < ApplicationController
   def know
     @owner="我"
     @user = current_user
-    @users = @user.suggested_friends
+    arr = @user.suggested_friends
+    @users=arr[0]
+    @hash= arr[1]
     
     render :layout=>'user'
   end

@@ -38,7 +38,7 @@ test1:
 test2:
   id: 4
   email: "orez99@163.com"
-  name: "麦子加菲"
+  name: "麦加菲"
   salt: <%= SALT %>
   encrypted_password: <%= User.encrypt_password('831027' , SALT) %>
   status: "2"
@@ -179,4 +179,64 @@ qiu15:
   gender: "0"
   birth: "1984-08-12"
   agree: "1" 
+qiu16:
+  id: 16
+  email: "qiu16@126.com"
+  name: "佟大为"
+  salt: <%= SALT %>
+  encrypted_password: <%=User.encrypt_password('123456', SALT) %>
+  status: "1"
+  activated_at: <%=Time.now%>
+  city: "广州"
+  gender: "0"
+  birth: "1987-08-12"
+  agree: "1"
+qiu17:
+  id: 17
+  email: "qiu17@gmail.com"
+  name: "韦一笑"
+  salt: <%= SALT %>
+  encrypted_password: <%=User.encrypt_password('123456', SALT) %>
+  status: "2"
+  activated_at: <%=Time.now%>
+  city: "洛阳"
+  gender: "1"
+  birth: "1969-08-12"
+  agree: "1"
+qiu18:
+  id: 18
+  email: "18181818@qq.com"
+  name: "王三少"
+  salt: <%= SALT %>
+  encrypted_password: <%=User.encrypt_password('123456', SALT) %>
+  status: "2"
+  activated_at: <%=Time.now%>
+  city: "贵阳"
+  gender: "1"
+  birth: "1997-09-12"
+  agree: "1"
+qiu19:
+  id: 19
+  email: "qiu19@126.com"
+  name: "郑爽"
+  salt: <%= SALT %>
+  encrypted_password: <%=User.encrypt_password('123456', SALT) %>
+  status: "0"
+  activated_at: <%=Time.now%>
+  city: "深圳"
+  gender: "1"
+  birth: "1986-08-12"
+  agree: "1" 
+qiu20:
+  id: 20
+  email: "qiu20@126.com"
+  name: "秋少云"
+  salt: <%= SALT %>
+  encrypted_password: <%=User.encrypt_password('123456', SALT) %>
+  status: "2"
+  activated_at: <%=Time.now%>
+  city: "桂林"
+  gender: "0"
+  birth: "1985-09-12"
+  agree: "1"
   

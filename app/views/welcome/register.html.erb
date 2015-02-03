@@ -1,4 +1,7 @@
 <%= stylesheet_link_tag "register" %>
+<%= javascript_include_tag "/js/register_form.js" %> 
+<%= javascript_include_tag "/js/chooseCity.js" %> 
+
 
 <div class="reg_main clearfix">
 <div class="reg_Contwrap">
@@ -10,21 +13,20 @@
 <ul class="reg_box clfix">
 
 <li class="accounts">
-	<div class="reg_formlabel">电子邮箱：</div>
+	<div class="reg_formlabel">邮箱：</div>
 	<div style="z-index:1" class="reg_element">
-		<span class="inp_box"><input type="text" autocomplete="off" onblur="this.className='txt';check_email()" onfocus="this.className='txt on_fs'" maxlength="100" data-valid-url="/interface/checkemail.php" errmsg="请填写有效的电子邮箱" reqmsg=" 请输入有效的电子邮箱" datatype="email" value="<%=@user ? @user.email : '' %>" name="user[email]" id="regemailinput" class="txt" data-result=""></span>
-
+		<span class="inp_box"><input type="text" autocomplete="off" onblur="this.className='txt';check_email()" onfocus="this.className='txt on_fs'" maxlength="100" errmsg="请填写有效的电子邮箱" reqmsg=" 请输入有效的电子邮箱" datatype="email" value="<%=@user ? @user.email : '' %>" name="user[email]" id="regemailinput" class="txt" data-result=""></span>
 		<div style="display:none;" id="inputInner">
 			<div class="pl6">请选择邮箱的类型</div>
-			<a datav="qq.com" class="preslemail active"  href="javascript:void(0);" onclick="copy('2')"></a>
-			<a datav="126.com" class="preslemail "  href="javascript:void(0);" onclick="copy(3)"></a>
-			<a datav="163.com" class="preslemail"  href="javascript:void(0);" onclick="copy(4)"></a>
-			<a datav="sina.com" class="preslemail"  href="javascript:void(0);" onclick="copy(5)"></a>
-			<a datav="sina.cn" class="preslemail"  href="javascript:void(0);" onclick="copy(6)"></a>
-			<a datav="hotmail.com" class="preslemail"  href="javascript:void(0);" onclick="copy(7)"></a>
-			<a datav="gmail.com" class="preslemail"  href="javascript:void(0);"onclick="copy(8)"></a>
-			<a datav="sohu.cn" class="preslemail"  href="javascript:void(0);" onclick="copy(9)"></a>
-			<a datav="139.com" class="preslemail" href="javascript:void(0);" onclick="copy(10)"></a>
+			<a class="preslemail active">@qq.com</a>
+			<a class="preslemail">@126.com</a>
+			<a class="preslemail">@163.com</a>
+			<a class="preslemail">@sina.com</a>
+			<a class="preslemail">@sina.cn</a>
+			<a class="preslemail">@hotmail.com</a>
+			<a class="preslemail">@gmail.com</a>
+			<a class="preslemail">@sohu.cn</a>
+			<a class="preslemail">@139.com</a>
 		</div>
 
 		<div id="email_hint" style="margin-left: 0px; display: block;" class="reg_tips form-valid-tip-normal">
@@ -53,7 +55,7 @@
 
 
 <li class="password">
-<div class="reg_formlabel">创建密码：</div>
+<div class="reg_formlabel">密码：</div>
 <div class="reg_element">
 <span class="inp_box"><input type="password" onblur="this.className='txt';check_password()" onfocus="this.className='txt on_fs'" style="line-height:12px\9;" errmsg="密码应该由6-16个字母、数字或特殊字符组成" reqmsg=" 请输入密码" maxlength="16" minlength="6" reg-pattern="/^[a-z]{6,20}$/" datatype="reg" name="user[password]" class="txt" id="password"></span>
 <div id="pwd_hint" style="display:block;margin-left:0;" class="reg_tips form-valid-tip-normal">
@@ -74,7 +76,7 @@
 
 
 <li class="password">
-<div class="reg_formlabel">确认密码：</div>
+<div class="reg_formlabel">确认：</div>
 <div class="reg_element">
 <span class="inp_box"><input type="password" onblur="check_confirm();this.className='txt';" onfocus="this.className='txt on_fs'" style="line-height:12px\9;" errmsg="两次输入密码必须一致" reqmsg=" 请输入确认密码" maxlength="16" minlength="6" reg-pattern="/^[a-z]{6,20}$/" datatype="reg" name="user[password_confirmation]" class="txt" id="confirm_password"></span>
 <div id="confirm_hint" style="display:block;margin-left:0;" class="reg_tips form-valid-tip-normal">
@@ -175,7 +177,7 @@
 <li class="live">
 <div style="margin-top:4px" class="reg_formlabel">居 住 地：</div>
 <div class="reg_element">
-<span class="inp_box"><input type="text" onblur="this.className='job incon_city_arrowbottom'" onfocus="this.className='job incon_city_arrowbottom on_fs'" reqmsg=" 请选择居住地" value="上海" name="user[city]" class="job incon_city_arrowbottom" style="ime-mode: disabled;" readonly></span>
+<span class="inp_box"><input type="text" onblur="this.className='job incon_city_arrowbottom'" onfocus="this.className='job incon_city_arrowbottom on_fs'" reqmsg=" 请选择居住地" value="" name="user[city]" class="job incon_city_arrowbottom" style="ime-mode: disabled;" readonly onclick="popup_locate()" id="location"></span>
 <div style="display:none" class="reg_tips form-valid-tip-err">
 <div style="display:block;" class="error l">
 <span class="form-valid-err-content"></span>
@@ -201,7 +203,7 @@
 
 
 <li style="display:none;" class="reg_bt captchadivImg  captchadiv">
-<img align="absmiddle" data-keytype="reg" id="randimg2"> <a href="#" class="sl2" id="changeRcode2">换一张</a>
+<img align="absmiddle" src="/images/captcha.gif" data-keytype="reg" id="randimg2"> <a href="#" class="sl2" id="changeRcode2">换一张</a>
 </li>
 
 
@@ -222,92 +224,35 @@
 
 <li class="reg_bt">
 <span class="btn_nowRegBox"><input type="submit" onclick="return check_form();" class="btn_nowReg" value="立即注册" id="" name=""></span>
-<p class="mt3 c9" style="display:none;*padding-top:3px;_padding-top:5px;" id="submit_tip">&#12288;注册中&nbsp;&nbsp;<img src="http://img1.kaixin001.com.cn/i/home/dt_loading_nobg.gif"></p>
+<p class="mt3 c9" style="display:none;*padding-top:3px;_padding-top:5px;" id="submit_tip">&#12288;注册中&nbsp;&nbsp;<img src=""></p>
 <div class="h20"></div>
 </li>
 </ul>
 
 
+<div style="display: none; position: absolute; top: 450px; left: 400px; z-index: 100;" id="choose_city">
+	<div style="position:absolute;z-index:-1;left:-8px;top:0;width:470px;">
+	<iframe frameborder="0" style="width:100%;filter:alpha(opacity=0);-moz-opacity:0"></iframe>
+	</div>
+	<div class="cityBg_top"></div>
 
-<div style="display: none; position: absolute; top: 450px; left: 305px; z-index: 100;" id="choose_city">
-<div style="position:absolute;z-index:-1;left:-8px;top:0;width:470px;">
-<iframe frameborder="0" style="width:100%;filter:alpha(opacity=0);-moz-opacity:0"></iframe>
-</div>
-<div class="cityBg_top"></div>
+	<div class="cityBg">
+		<div id="provincebox" class="cbox">
+		</div>
+		<div id="citybox" style="margin-top: 12px; display: none;" class="cbox">				
+		</div>
+		<div class="btn_area">
+			<span class="e_d52"><input type="button" style="width:45px;" onmouseout="this.className='gb3';" onmouseover="this.className='gb4';" class="gb3" title="关闭" value="关闭" id="btn_fb" onclick="close_box()"></span>
+		</div>
+	</div>
 
-<div class="cityBg">
-<div id="provincebox" class="cbox">
-<span><a data-i="0" class="sl2">北京</a></span>
-<span class=""><a data-i="1" class="sl2">云南</a></span>
-<span class=""><a data-i="2" class="sl2">贵州</a></span>
-<span class="curr"><a data-i="3" class="sl2">四川</a></span>
-<span><a data-i="4" class="sl2">内蒙古</a></span>
-<span><a data-i="5" class="sl2">宁夏</a></span>
-<span><a data-i="6" class="sl2">甘肃</a></span>
-<span><a data-i="7" class="sl2">青海</a></span>
-<span><a data-i="8" class="sl2">西藏</a></span>
-<span><a data-i="9" class="sl2">新疆</a></span>
-<span><a data-i="10" class="sl2">安徽</a></span>
-<span><a data-i="11" class="sl2">浙江</a></span>
-<span><a data-i="12" class="sl2">福建</a></span>
-<span><a data-i="13" class="sl2">香港</a></span>
-<span><a data-i="14" class="sl2">台湾</a></span>
-<span><a data-i="15" class="sl2">澳门</a></span>
-<span><a data-i="16" class="sl2">广西</a></span>
-<span><a data-i="17" class="sl2">广东</a></span>
-<span><a data-i="18" class="sl2">江西</a></span>
-<span><a data-i="19" class="sl2">上海</a></span>
-<span><a data-i="20" class="sl2">天津</a></span>
-<span><a data-i="21" class="sl2">重庆</a></span>
-<span><a data-i="22" class="sl2">黑龙江</a></span>
-<span><a data-i="23" class="sl2">吉林</a></span>
-<span><a data-i="24" class="sl2">辽宁</a></span>
-<span><a data-i="25" class="sl2">山东</a></span>
-<span><a data-i="26" class="sl2">山西</a></span>
-<span><a data-i="27" class="sl2">陕西</a></span>
-<span><a data-i="28" class="sl2">河北</a></span>
-<span><a data-i="29" class="sl2">河南</a></span>
-<span><a data-i="30" class="sl2">湖北</a></span>
-<span><a data-i="31" class="sl2">湖南</a></span>
-<span><a data-i="32" class="sl2">海南</a></span>
-<span><a data-i="33" class="sl2">江苏</a></span>
-<span><a data-i="34" class="sl2">海外</a></span>
+  <div class="cityBg_bot"></div>
 </div>
-<div id="citybox" style="margin-top: 12px; display: block;" class="cbox">
-<div class="city_list">
-<span><a data-i="0" class="sl">成都</a></span>
-<span><a data-i="1" class="sl">自贡</a></span>
-<span><a data-i="2" class="sl">攀枝花</a></span>
-<span><a data-i="3" class="sl">泸州</a></span>
-<span><a data-i="4" class="sl">德阳</a></span>
-<span><a data-i="5" class="sl">绵阳</a></span>
-<span><a data-i="6" class="sl">广元</a></span>
-<span><a data-i="7" class="sl">遂宁</a></span>
-<span><a data-i="8" class="sl">内江</a></span>
-<span><a data-i="9" class="sl">乐山</a></span>
-<span><a data-i="10" class="sl">南充</a></span>
-<span><a data-i="11" class="sl">眉山</a></span>
-<span><a data-i="12" class="sl">宜宾</a></span>
-<span><a data-i="13" class="sl">广安</a></span>
-<span><a data-i="14" class="sl">达州</a></span>
-<span><a data-i="15" class="sl">雅安</a></span>
-<span><a data-i="16" class="sl">巴中</a></span>
-<span><a data-i="17" class="sl">资阳</a></span>
-<span><a data-i="18" class="sl">阿坝藏族羌族自治州</a></span>
-<span><a data-i="19" class="sl">甘孜藏族自治州</a></span>
-<span><a data-i="20" class="sl">凉山彝族自治州</a></span>
-</div>
-</div>
-<div class="btn_area">
-	<span class="e_d52"><input type="button" style="width:45px;" onmouseout="this.className='gb3';" onmouseover="this.className='gb4';" class="gb3" title="关闭" value="关闭" id="btn_fb"></span>
-</div>
-</div>
-
-<div class="cityBg_bot"></div>
-</div>
-
 
 <%end%>
+
+
+
 </div>
 </div>
 </div>
@@ -315,200 +260,6 @@
 <% abc={"abc"=>[{"a"=>1,"b"=>2},{"c"=>3,"d"=>4}]}%>
 
 
-
-<script type="text/javascript">
-function change_date(){
-  year=document.getElementById("year");
-  month=document.getElementById("month");
-  day=document.getElementById("day");
-
-  vYear=parseInt(year.value);
-  vMonth=parseInt(month.value);
-
-  if(vYear!=0&&vMonth!=0){ 
-		day.length=0;
-		day.options.add(new Option("--","0"))
-		max=(new Date(vYear,vMonth,0)).getDate();
-		var j;
-		for(var i=1;i<=max;i++){ 
-		  if(i<10) { j = "0"+i;}else {j=i.toString();}
-		  day.options.add(new Option(j,j))
-		}
-  }
-}
-
-function show_hint(){
-  email=document.getElementById("regemailinput");
-  word=email.value;
-  jQuery("#inputInner").css("display","block");
-  
-  for(var i=2;i<=10;i++){ 
-    link= jQuery("#inputInner a:nth-child("+i+")");
-    link.html(word+'@'+link.attr("datav"));
-  }
-}
-
-function copy(i){
-  email=document.getElementById("regemailinput");
-  link= jQuery("#inputInner a:nth-child("+i+")");
-  email.value = link.html();
-  jQuery("#inputInner").css("display","none");
-}
-
-function check_email(){
-  re = /^[a-zA-Z0-9_\.\-]+@([a-zA-Z0-9\-]+\.)+[a-zA-Z0-9]{2,4}$/;
-  email = jQuery("#regemailinput").val();
-  var rtn;
-  if(re.test(email)){
-     check_duplicate(email);
-     rtn= jQuery("#bool").val()=="true";
-  }else{
-    rtn=false;
-    jQuery("#email_hint").hide();
-    jQuery("#email_img").hide();
-    jQuery("#emailerrtip div span").html("请填写有效电子邮箱");
-    jQuery("#emailerrtip").show();
-  }
-  return rtn;
-}
-
-function check_duplicate(email){
-  jQuery.ajax({
-		 type: "post",
-		 async: "false",
-		 url: "/users/ajax_validate",
-		 dataType: "json", 
-		 data:{validateId: "user_email",validateValue: email},
-		 success: function(result, textStatus){
-		 handle_check(result, textStatus);		  
-		 }
-  });
-}
- 
-function handle_check(result, textStatus){
-	if(textStatus == "success"){			
-		if(result.jsonValidateReturn[2]=="false"){
-			jQuery("#email_hint").hide();
-		 jQuery("#email_img").hide();
-		 jQuery("#emailerrtip div span").html("该邮箱已经注册，请您直接<a class='sl2' target='_blank' href='/login/?email=" + result.jsonValidateReturn[0] + "'>登录</a>或者换一个邮箱");   
-		 jQuery("#emailerrtip").show();
-		 jQuery("#bool").val("false");
-		}else {
-		 jQuery("#email_hint").hide();
-		 jQuery("#emailerrtip").hide();
-		 jQuery("#email_img").css("display","block");
-		 jQuery("#bool").val("true");
-		}			
-	}
-}
-
-
-function test_ajax(){
-  var abc = '<%= raw abc.to_json %>';
-  jQuery.ajax({
-  type:"post",
-  //contentType: "application/json", 传过去时的数据类型
-  url:"/users/test_ajax",
-  dataType: "json", ////WebService 会返回Json类型
-  data:{abc: abc, def: "def"},//这里是要传递的参数，格式为 data: "{paraName:paraValue}"
-  success:function (result, textStatus) {
-		if(textStatus == "success"){
-		  //alert(typeof(result.jsonValidateReturn));
-		  //alert(result.jsonValidateReturn);
-			alert(result.jsonValidateReturn[1]);
-		}
-   }
-  });
-}
-
-jQuery(document).ready(function(){ 
-  test_ajax();
-});
-
-function check_password(){
-  re = /^[a-zA-Z0-9~@#%&_\.\-\^\$\*\!\+\=]{6,16}$/;
-  pwd = jQuery("#password").val();
-  if(re.test(pwd)){
-     var rtn=true;
-     jQuery("#pwd_hint").hide();
-     jQuery("#pwd_tip").hide();
-     jQuery("#pwd_img").css("display","block");
-  }else{
-    rtn=false;
-    jQuery("#pwd_hint").hide();
-    jQuery("#pwd_img").hide();
-    jQuery("#pwd_tip").show();
-  }
-  return rtn;
-}
-
-function check_confirm(){
-  confirm = jQuery("#confirm_password").val();
-  pwd= jQuery("#password").val();
-  if(pwd!=""&&confirm==pwd){
-     var rtn=true;
-     jQuery("#confirm_hint").hide();
-     jQuery("#confirm_tip").hide();
-     jQuery("#confirm_img").css("display","block");
-  }else{
-    rtn=false;
-    jQuery("#confirm_hint").hide();
-    jQuery("#confirm_img").hide();
-    jQuery("#confirm_tip").show();
-  }
-  return rtn;
-}
-
-function check_name(){
-  re = /^[\u4e00-\u9fa5]{2,4}$/;
-  name = jQuery("#real_name").val();
-  if(re.test(name)){
-     var rtn=true;
-     jQuery("#name_hint").hide();
-     jQuery("#name_tip").hide();
-     jQuery("#name_img").css("display","block");
-  }else{
-    rtn=false;
-    jQuery("#name_hint").hide();
-    jQuery("#name_img").hide();
-    jQuery("#name_tip").show();
-  }
-  return rtn;
-}
-
-function check_birth(){
-  year=jQuery("#year").val();
-  month=jQuery("#month").val();
-  day=jQuery("#day").val();
-
-  if(year!="0"&&month!="0"&&day!="0"){
-     var rtn=true;
-     jQuery("#birth_tip").hide();
-     jQuery("#birth_img").css("display","block");
-  }else{
-     rtn=false;
-     jQuery("#birth_img").hide();
-     jQuery("#birth_tip").show();
-  }
-  return rtn;
-}
-
-function check_agree(){
-  if(jQuery("#agree").attr("checked")){
-    var rtn=true;
-    jQuery("#agree_tip").hide();
-  }
-  else{
-    rtn=false;
-    jQuery("#agree_tip").show();
-  }
-  return rtn;
-}
-
-function check_form(){
-  return check_email()&&check_password()&&check_confirm()&&check_name()&&check_birth()&&check_agree()
-}
-</script>
 
 
 

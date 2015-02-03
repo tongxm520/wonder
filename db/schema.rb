@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20150108122135) do
+ActiveRecord::Schema.define(:version => 20150129105113) do
 
   create_table "categories", :force => true do |t|
     t.string   "name",        :null => false
@@ -78,6 +78,17 @@ ActiveRecord::Schema.define(:version => 20150108122135) do
     t.text     "content"
     t.string   "user_name"
     t.string   "user_logo"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "rest_clients", :force => true do |t|
+    t.string   "name"
+    t.text     "description"
+    t.string   "api_key"
+    t.string   "secret"
+    t.boolean  "is_master",   :default => false
+    t.boolean  "is_disabled", :default => false
     t.datetime "created_at"
     t.datetime "updated_at"
   end

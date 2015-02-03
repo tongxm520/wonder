@@ -10,6 +10,7 @@ class UsersController < ApplicationController
       @owner = "我"
     end
     @user = User.find(params[:id])
+    @friends = @user.friends(nil)
     respond_to do |format|
       format.html {render layout: "user"}
       format.xml  { render :xml => @user }
@@ -25,6 +26,7 @@ class UsersController < ApplicationController
       @owner_url = user_posts_path(params[:id])
     end
     @user = User.find(params[:id])
+    @friends = @user.friends(nil)
     render layout: "profile"
   end
   

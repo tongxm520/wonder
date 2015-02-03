@@ -23,18 +23,22 @@
 			<b><a href="/friend/visitor.php?statfrom=newHomeRightword">
 			<%=@owner%>的好友	
 			</a></b>
-			<span><a href="/friend/visitor.php">(7)</a></span>
+			<span><a href="/friend/visitor.php">(<%=@friends.count%>)</a></span>
 		</div>
 		<div class="r">
-		<a title="查看更多好友" class="h_more" href="#">更多</a>
+		<a title="查看更多好友" class="h_more" href="/friend/manage">更多</a>
 		</div>
 </div>
 
 <br />
-<%7.times do %>
+<%@friends.each  do |f| %>
 <div class="homeFriendItem">
-	<a class="avatar_50" href="/home/165126820.html" style="background-image:url(/images/cartman.jpg)"></a>
-	<div class="frd_name"><a class="sl2" href="/home/165126820.html">范冰冰</a></div>
-	<div class="vaftime">12月13日</div>
+  <%img = f.small_logo_path&&f.small_logo_path!="" ? f.small_logo_path : "/images/cartman.jpg"%>
+	<a class="avatar_50" href="<%=profile_user_path(f)%>" style="background-image:url(<%=img%>)"></a>
+	<div class="frd_name"><a class="sl2" href="<%=profile_user_path(f)%>"><%=f.name%></a></div>
+	<div class="vaftime"></div>
 </div>
 <%end%>
+
+
+

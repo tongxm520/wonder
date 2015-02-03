@@ -1,0 +1,17 @@
+xml.users do
+  xml.status(:status=>@code) do
+    xml.message(@message)
+  end
+  @users.each do |u|
+    xml.user(:id=>u.id) do
+      xml.id(u.id)
+      xml.name(u.name)
+      xml.email(u.email)
+      xml.gender(u.gender)
+      xml.status(u.status)
+      xml.city(u.city)
+      xml.birth(u.birth)
+    end		
+  end
+end
+

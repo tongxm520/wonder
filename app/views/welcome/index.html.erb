@@ -1,0 +1,28 @@
+<div class="list">
+	<% @posts.each do |p| %>
+		<div class="item">
+			<div>
+				<p class="item-operate">
+				<a href="/welcome/show?id=<%=p.id%>">查看</a>
+				</p>
+				<p>	
+				  <a href="/welcome/show?id=<%=p.id%>"><%=p.subject%></a>		    
+				</p>	
+			</div>	  
+			<p><%=truncate(strip_tags(p.content), :length => 200)%></p>	  
+		</div>
+	<% end %>
+</div>
+
+<style type="text/css">
+.item .item-operate {
+  display: block;
+  float: right;
+  }
+
+div.item {
+  background-color: #f6f9fc;
+  border: 1px solid #fefbfe;
+  }
+
+</style>

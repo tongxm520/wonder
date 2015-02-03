@@ -1,0 +1,3 @@
+xml.status(:status=>@code) do
+  xml.message(@message) if @message
+end
