@@ -23,6 +23,7 @@ class FriendController < ApplicationController
     @owner="我"
     @user = current_user
     @pendings = ActiveRecord::Base.connection.execute("SELECT `users`.* FROM `users` where id in (select relationships.requester_id from relationships  WHERE relationships.status='pending' and relationships.requestee_id='#{@user.id}' )")
+    @users = @user.search(params[:query])
     render :layout=>'user'
   end
   
@@ -79,11 +80,40 @@ class FriendController < ApplicationController
   end
   
   def create_group
-    params[:group][:user_id]=current_user.id
-    g=Group.new(params[:group])
-    g.save
+		 params[:group][:user_id]=current_user.id
+		 g=Group.new(params[:group])
+		 g.save
     redirect_to "/friend/manage"
   end
+  
+  def delete_friend
+    Relationship.delete_friend(current_user.id,params["friend_id"]) 
+    render :json => {:id =>params["friend_id"] }.to_json
+  end
+  
+  def find
+    if params[:query]&&!params[:query].strip.blank?
+      if params[:query].strip.downcase=~/^[a-z]+$/
+		     col="pinyin"
+		   elsif params[:query].strip=~/^[\u4e00-\u9fa5]{1,4}$/
+		     col="name"
+		   end
+		   
+		   if col
+				 user_id = current_user.id
+				 @groups = Friendship.find_group(user_id)
+				 @grps = current_user.groups
+				 fs= Friendship.where("user_id='#{user_id}'")
+				 ids = fs.map{|f| f.friend_id }
+				 
+				 @friends = User.all(:conditions=>["id in (?) and #{col} like ?",ids,"%#{params[:query].strip}%"]) 
+		   end
+		 else
+		   @friends=[]
+    end
+  end
 end
+
+
 
 

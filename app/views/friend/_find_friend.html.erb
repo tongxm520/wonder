@@ -37,12 +37,25 @@
 			<div class="search">
 				<form method="get" id="search" action="#">
 					<span>
-					<input type="text" name="s" id="s" />
-					<input name="keyword" type="image" src="/images/search.gif" value="Go" id="searchsubmit" class="btn"  />
+					<input type="text" name="query" id="s" />
+					<input type="image" src="/images/search.gif" id="searchsubmit" class="btn"  />
 					</span>
 				</form>
 			</div>
 	</div>
+</div>
+
+<div class="findFrdMkList">
+  <ul class="clearfix list">	
+     <%@users.each do |user|%>		
+			<li id="user<%=user.id%>">
+			<%img = user.medium_logo_path&&user.medium_logo_path!="" ? user.medium_logo_path : "/images/120-120.jpg"%>
+			<p><a title="<%=user.name%>" class="face120" href="<%=profile_user_path(user)%>"><img alt="" src="<%=img%>"></a></p>
+			<p><a class="sl" href="<%=profile_user_path(user)%>"><%=user.name%></a></p>
+			<p><i class="icoadd"></i><a onclick="add_friend('<%=user.id%>');" class="sl2 addfriend" href="javascript:void;">加为好友</a></p>
+			</li>
+			<%end%>
+  </ul>
 </div>
 
 <script type="text/javascript">
@@ -61,6 +74,20 @@ function decide(id,s){
 		    alert("您忽略了"+result.jsonReturn[2]+"的好友请求！")
 		  }		  
 			jQuery("#pending"+result.jsonReturn[0]).remove();
+		}
+   }
+  });
+}
+
+function add_friend(id){
+  jQuery.ajax({
+  type:"post",
+  url:"/friend/add_friend",
+  dataType: "json", 
+  data:{user_id: id},
+  success:function (result, textStatus) {
+		if(textStatus == "success"){
+			jQuery("#user"+result.jsonReturn[0]).remove();
 		}
    }
   });
@@ -204,6 +231,56 @@ function decide(id,s){
 
 .search-form {
   margin-top: 20px;
+}
+
+
+.findFrdMkList {
+    overflow: hidden;
+    width: 800px;
+    margin-left: 20px !important;
+}
+
+
+.clearfix:after {
+    clear: both;
+    content: ".";
+    display: block;
+    font-size: 0;
+    height: 0;
+    line-height: 0;
+    visibility: hidden;
+}
+.clearfix {
+    display: block;
+}
+ul, li {
+    list-style: none outside none;
+}
+/********************************************************************/
+
+.list{
+  margin-left: 12px;
+  width:800px;
+  overflow:hidden;
+  zoom:1;
+} 
+  
+.list li{
+	float:left;
+	width:190px;
+	padding: 5px;
+	line-height: 20px;
+} 
+
+.findFrdMkList .icoadd {
+    background: url("/images/spt_cmdfrd.png") no-repeat scroll 0 0 rgba(0, 0, 0, 0);
+    display: inline-block;
+    height: 9px;
+    margin-right: 2px;
+    margin-top: -2px;
+    overflow: hidden;
+    vertical-align: middle;
+    width: 9px;
 }
 </style>
 

@@ -42,5 +42,18 @@ development:
 	max_results: 70000
 	morphology: none
 	listen: localhost:3312
+------------------------------------------------------------
+sudo thin config -C /etc/thin/wonder.yml -c /home/simon/wonder  --servers 3 -e development
+
+cd /usr/local/nginx130/sbin
+sudo ./nginx -c /home/simon/wonder/config/nginx.cnf
+
+ruby -I test test/unit/topic_test.rb
+rake test:functionals
+rake test:units
+
+
+
+
 
 

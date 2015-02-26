@@ -1,0 +1,2 @@
+page.replace_html "friend_list", :partial=>"frd_list"
+

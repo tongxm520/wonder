@@ -1,6 +1,8 @@
 <div class="v3-grid friend-manage">
 	<div class="v3-left w160 mr20">	   
-			<div class="fri_search"><input onblur="this.value='搜索好友'" onfocus="this.value=''" value="搜索好友" id="search_input" type="text"></div>
+			<div class="fri_search">
+			  <input id="search_input" type="text" name="keyword"/>
+			</div>
 			
 			<ul class="fri_type_list mb10" id="group_nav_list">
 			  <%klass =  params[:group].nil?||params[:group].to_i==-3 ? "now opcls" : "opcls"%>
@@ -22,7 +24,7 @@
 				<a class="sl2 l" title="朋友的朋友" href="#">朋友的朋友</a>
 				<span class="c9 r">0</span>
 				</li-->
-				<%klass =  !params[:group].nil?&&params[:group].to_i==0 ? "now opcls" : "opcls"%>
+				<%klass =  params[:group]=="0" ? "now opcls" : "opcls"%>
 				<li class="<%=klass%>">
 				<a class="sl2 l" title="未分组好友" href="/friend/manage?group=0">未分组好友</a>
 				<span class="c9 r">0</span>
@@ -122,6 +124,27 @@ function change_group(id,grp){
    }
   });
 }
+
+
+var q=document.getElementById("search_input");
+q.oninput=change_list;//IE 使用onpropertychange事件    
+
+
+function change_list(){
+  var q=document.getElementById("search_input");
+  var str=trim(q.value);
+  if(str!=""){
+    new Ajax.Request("/friend/find", {
+    method: "post",
+    parameters: "query="+str,
+    evalScripts: true,
+    onComplete:    function(request) { element.fire("ajax:complete", request); },
+    onSuccess:     function(request) { element.fire("ajax:success",  request); },
+    onFailure:     function(request) { element.fire("ajax:failure",  request); }
+     });
+  }  
+}
+
 </script>
 
 <style type="text/css">

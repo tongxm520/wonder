@@ -198,10 +198,9 @@ $(function() {
 });
 
 
-jQuery(document).ready(function(){
-  var q=document.getElementById("query");
-  q.oninput=show;//IE 使用onpropertychange事件    
-});
+
+var q=document.getElementById("query");
+q.oninput=show;//IE 使用onpropertychange事件    
 
 function show(){
   //alert(this.value);

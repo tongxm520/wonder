@@ -121,7 +121,7 @@ class PostsController < ApplicationController
     redirect_to user_posts_path(params[:user_id])
   end
   
-  #TODO:http://localhost:3000/users/1/posts/6/display
+  #http://localhost:3000/users/1/posts/6/display
   def display
     @u = User.find(params[:user_id])
     @post =Post.find(params[:id]) 

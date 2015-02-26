@@ -14,6 +14,8 @@ gem 'thinking-sphinx','2.0.10'
 gem 'rmagick','2.13.4'
 gem 'memcache-client', '1.8.5'
 gem 'ruby-pinyin','0.4.0'
+gem 'thin', '1.2.11'
+
 
 # Use unicorn as the web server
 # gem 'unicorn'

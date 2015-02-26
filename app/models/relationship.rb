@@ -15,6 +15,13 @@ class Relationship < ActiveRecord::Base
        Relationship.create!(:requester_id=>from,:requestee_id=>to,:status=>status)
      end
   end
+  
+  def self.delete_friend(user_id,friend_id)
+    r1=Relationship.find_by_requester_id_and_requestee_id(user_id,friend_id)
+    r2=Relationship.find_by_requester_id_and_requestee_id(friend_id,user_id)
+    r1 ? r1.destroy : (r2 ? r2.destroy : r2)
+    Friendship.delete_friendship(user_id, friend_id)
+  end
 end
 
 =begin

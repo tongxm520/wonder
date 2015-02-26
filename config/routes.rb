@@ -95,9 +95,13 @@ Wonder::Application.routes.draw do
   get '/friend/know' => "friend#know"
   get '/friend/invite' => "friend#invite"
   post '/friend/add_friend' =>"friend#add_friend"
+  post '/friend/delete_friend' =>"friend#delete_friend"
   post '/friend/decide' =>"friend#decide"
   post '/friend/change_group' =>"friend#change_group"
   post '/friend/create_group' =>"friend#create_group"
+  post '/friend/find' =>"friend#find"
+  
+  
   get "/welcome/search" => "welcome#search"
   get "/welcome/select" => "welcome#select"
   get "/welcome/show" => "welcome#show"

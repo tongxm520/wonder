@@ -17,7 +17,7 @@ class User < ActiveRecord::Base
   validate  :password_must_be_present
   validate  :email_unique, :on=> :create
   
-  before_create	:make_activation_code
+  before_create	:make_activation_code, :set_pinyin
   
   has_many :posts
   has_many :comments
@@ -72,7 +72,7 @@ select user_id,count(user_id) as same  from friendships where friend_id in (sele
     ids1= rs1.map{|r| r.requestee_id}
     rs2=Relationship.where("requestee_id='#{self.id}' and (status='pending' or status='accepted')")
     ids2 = rs2.map{|r| r.requester_id}
-    rs3 = User.all(:conditions=>["id not in (?)",ids1+ids2+[self.id]]) 
+    rs3 = User.all(:conditions=>["activation_code is NULL and id not in (?)",ids1+ids2+[self.id]]) 
     ids3 =rs3.map{|r| r.id}
     _ids3=ids3.join(",")
     rs=ActiveRecord::Base.connection.execute("select user_id,friend_id  from friendships where friend_id in (select friend_id from friendships  where user_id='#{self.id}' ) and user_id in (#{_ids3}) and friend_id<>'#{self.id}'")
@@ -86,6 +86,14 @@ select user_id,count(user_id) as same  from friendships where friend_id in (sele
 		return 	users,hash
   end
   
+  def search(keyword)
+    rs1=Relationship.where("requester_id='#{self.id}' and (status='pending' or status='accepted')")
+    ids1= rs1.map{|r| r.requestee_id}
+    rs2=Relationship.where("requestee_id='#{self.id}' and (status='pending' or status='accepted')")
+    ids2 = rs2.map{|r| r.requester_id}
+    User.all(:conditions=>["activation_code is NULL and id not in (?)",ids1+ids2+[self.id]])
+  end
+  
   def is_friend_of?(user_id)
     arr1 = Relationship.where("requester_id='#{self.id}' and requestee_id='#{user_id}'")
     arr2 = Relationship.where("requestee_id='#{self.id}' and requester_id='#{user_id}'")
@@ -95,15 +103,23 @@ select user_id,count(user_id) as same  from friendships where friend_id in (sele
   end
   
   def friends(group)
-    _group = group.to_i
-    if group.nil? or _group ==-3
-		   a = self.requesters.where("relationships.status='accepted'")
-		   b = self.requestees.where("relationships.status='accepted'")
-		   return a+b
-    elsif _group>-3
-      fs= Friendship.where("user_id='#{self.id}' and group_id='#{group}'")
-      ids = fs.map{|f| f.friend_id }
-      return User.all(:conditions=>["id  in (?)",ids]) 
+    if group.nil? or group=~/^\-\d+$/ or group=~/^\d+$/
+		  _group = group.to_i
+		  if group.nil? or _group ==-3
+				 a = self.requesters.where("relationships.status='accepted'")
+				 b = self.requestees.where("relationships.status='accepted'")
+				 return a+b
+		  elsif _group>-3
+		    fs= Friendship.where("user_id='#{self.id}' and group_id='#{group}'")
+		    ids = fs.map{|f| f.friend_id }
+		    return User.all(:conditions=>["id  in (?)",ids]) 
+		  end
+		 elsif ('a'..'z').include?(group.downcase)
+		   fs= Friendship.where("user_id='#{self.id}'")
+		   ids = fs.map{|f| f.friend_id }
+		   return User.all(:conditions=>["id in (?) and pinyin like ?",ids,"#{group.downcase}%"]) 
+		 else
+		   []
     end
   end
   
@@ -232,6 +248,10 @@ select distinct relationships.requester_id,friendships.group_id from relationshi
   
   def make_activation_code
     self.activation_code = self.class.make_token
+  end
+  
+  def set_pinyin
+    self.pinyin = PinYin.of_string(self.name, :ascii).join.gsub!(/\d/,"")
   end
 end
 

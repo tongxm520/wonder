@@ -7,6 +7,13 @@ class Friendship < ActiveRecord::Base
     Friendship.create(:user_id=>to,:friend_id=>from,:group_id=>0)
   end
   
+  def self.delete_friendship(from, to)
+    ship=Friendship.find_by_user_id_and_friend_id(from,to)
+    ship.destroy if ship
+    ship=Friendship.find_by_user_id_and_friend_id(to,from)
+    ship.destroy if ship
+  end
+  
   def self.find_group(id)
     hash={}
     ships=Friendship.where("user_id='#{id}'")

@@ -89,7 +89,7 @@ ghi:
   name: "李严红"
   salt: <%= SALT %>
   encrypted_password: <%= User.encrypt_password('teswettest' , SALT) %>
-  status: "3"
+  status: "2"
   activated_at: <%=Time.now%>
   city: "南京"
   gender: "0"
@@ -137,7 +137,7 @@ qiu12:
   name: "娄一笑"
   salt: <%= SALT %>
   encrypted_password: <%=User.encrypt_password('123456', SALT) %>
-  status: "3"
+  status: "2"
   activated_at: <%=Time.now%>
   city: "广州"
   gender: "1"
@@ -239,4 +239,124 @@ qiu20:
   gender: "0"
   birth: "1985-09-12"
   agree: "1"
-  
+qiu21:
+  id: 21
+  email: "qiu21@126.com"
+  name: "齐宣"
+  salt: <%= SALT %>
+  encrypted_password: <%=User.encrypt_password('123456', SALT) %>
+  status: "0"
+  activated_at: <%=Time.now%>
+  city: "桂林"
+  gender: "1"
+  birth: "1981-09-12"
+  agree: "1"
+qiu22:
+  id: 22
+  email: "qiu22@126.com"
+  name: "邱豪"
+  salt: <%= SALT %>
+  encrypted_password: <%=User.encrypt_password('123456', SALT) %>
+  status: "1"
+  activated_at: <%=Time.now%>
+  city: "桂林"
+  gender: "0"
+  birth: "1982-08-12"
+  agree: "1"
+qiu23:
+  id: 23
+  email: "qiu23@163.com"
+  name: "瞿英浩"
+  salt: <%= SALT %>
+  encrypted_password: <%=User.encrypt_password('123456', SALT) %>
+  status: "2"
+  activated_at: <%=Time.now%>
+  city: "南京"
+  gender: "0"
+  birth: "1983-09-12"
+  agree: "1"
+qiu24:
+  id: 24
+  email: "qiu24@126.com"
+  name: "涂小情"
+  salt: <%= SALT %>
+  encrypted_password: <%=User.encrypt_password('123456', SALT) %>
+  status: "0"
+  activated_at: <%=Time.now%>
+  city: "北京"
+  gender: "1"
+  birth: "1984-09-12"
+  agree: "1"
+qiu25:
+  id: 25
+  email: "qiu25@126.com"
+  name: "汪静"
+  salt: <%= SALT %>
+  encrypted_password: <%=User.encrypt_password('123456', SALT) %>
+  status: "1"
+  activated_at: <%=Time.now%>
+  city: "昆明"
+  gender: "0"
+  birth: "1986-09-12"
+  agree: "1" 
+qiu26:
+  id: 26
+  email: "qiu26@126.com"
+  name: "魏海阔"
+  salt: <%= SALT %>
+  encrypted_password: <%=User.encrypt_password('123456', SALT) %>
+  status: "1"
+  activated_at: <%=Time.now%>
+  city: "桂林"
+  gender: "0"
+  birth: "1989-08-12"
+  agree: "1"
+qiu27:
+  id: 27
+  email: "qiu27@gmail.com"
+  name: "吴经"
+  salt: <%= SALT %>
+  encrypted_password: <%=User.encrypt_password('123456', SALT) %>
+  status: "2"
+  activated_at: <%=Time.now%>
+  city: "海口"
+  gender: "0"
+  birth: "1985-07-02"
+  agree: "1"
+qiu28:
+  id: 28
+  email: "qiu28@126.com"
+  name: "魏海"
+  salt: <%= SALT %>
+  encrypted_password: <%=User.encrypt_password('123456', SALT) %>
+  status: "1"
+  activated_at: <%=Time.now%>
+  city: "太原"
+  gender: "0"
+  birth: "1975-09-12"
+  agree: "1"
+qiu29:
+  id: 29
+  email: "qiu29@sina.com.cn"
+  name: "童林"
+  salt: <%= SALT %>
+  encrypted_password: <%=User.encrypt_password('123456', SALT) %>
+  status: "2"
+  activated_at: <%=Time.now%>
+  city: "桂林"
+  gender: "0"
+  birth: "1985-09-12"
+  agree: "1"
+qiu30:
+  id: 30
+  email: "wang30@126.com"
+  name: "汪辉"
+  salt: <%= SALT %>
+  encrypted_password: <%=User.encrypt_password('123456', SALT) %>
+  status: "0"
+  activated_at: <%=Time.now%>
+  city: "桂林"
+  gender: "0"
+  birth: "1988-09-12"
+  agree: "1" 
+

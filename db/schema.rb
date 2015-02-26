@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20150129105113) do
+ActiveRecord::Schema.define(:version => 20150207024947) do
 
   create_table "categories", :force => true do |t|
     t.string   "name",        :null => false
@@ -115,6 +115,7 @@ ActiveRecord::Schema.define(:version => 20150129105113) do
     t.string   "large_logo_path"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "pinyin"
   end
 
 end

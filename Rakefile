@@ -11,22 +11,10 @@ namespace :db do
   desc "Load seed fixtures (from db/fixtures) into the current environment's database."
   task :seed => :environment do
     require 'active_record/fixtures'
-    Dir.glob(RAILS_ROOT + '/db/fixtures/*.yml').each do |file|
+    Dir.glob(Rails.root.to_s + '/db/fixtures/*.yml').each do |file|
       Fixtures.create_fixtures('db/fixtures', File.basename(file, '.*'))
     end
   end
-end
-
-namespace	:memcache do
-	desc "start memcache service"
-	task :start do
-		system! "memcached -d -m 128 -l localhost -p 11211 -P /tmp/memcached.pid"
-	end
-
-	desc "stop memcache service"
-	task :stop do
-		system! "kill `cat /tmp/memcached.pid`"
-	end	
 end
 
 

@@ -1,0 +1,53 @@
+worker_processes  4;
+events {
+  worker_connections  1024;
+}
+
+http {
+    include       /usr/local/nginx130/conf/mime.types;
+    default_type  application/octet-stream;
+
+    sendfile        on;
+    keepalive_timeout  65;
+
+    # thin集群
+    upstream thin {
+        server 127.0.0.1:3000;
+        server 127.0.0.1:3001;
+        server 127.0.0.1:3002;
+    }
+
+    server {
+        listen       80; #非root用户只能用1024之外端口
+        server_name  *.wonder.com;
+       
+          #网站根目录
+        root /home/simon/wonder/public;
+
+        location / {
+            proxy_set_header  X-Real-IP  $remote_addr;
+            proxy_set_header  X-Forwarded-For $proxy_add_x_forwarded_for;
+            proxy_set_header Host $http_host;
+            proxy_redirect off;
+            if (-f $request_filename/index.html) {
+                rewrite (.*) $1/index.html break;
+            }
+            if (-f $request_filename.html) {
+                rewrite (.*) $1.html break;
+            }
+            if (!-f $request_filename) {
+                proxy_pass http://thin; #ngnix负责前端转发到后端的thin集群
+                break;
+            }
+          }
+
+        error_page   500 502 503 504  /50x.html;
+        location = /50x.html {
+          root   html;
+          }
+
+       
+    }
+}
+
+
