@@ -1,2 +1,2 @@
 # wonder
-social network ,like kaixin001.com ,pengyou.com
+social network, ruby, rails, sphinx, memcache
