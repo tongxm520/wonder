@@ -35,7 +35,7 @@ Wonder::Application.configure do
     :port => "587",
     :domain => "gmail.com",
     :authentication => "plain",
-    :user_name => "tong.xm520@gmail.com",
+    :user_name => "******",
     :password => "******",
     :enable_starttls_auto => true
  }
@@ -47,7 +47,7 @@ config.action_mailer.smtp_settings = {
   :domain => "163.com",  
   :authentication => :login, 
   :enable_starttls_auto => true, 
-  :user_name => "tongxiaoming520@163.com",  
+  :user_name => "******",  
   :password => "******"  
 }  
   
