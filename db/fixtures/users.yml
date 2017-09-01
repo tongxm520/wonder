@@ -1,10 +1,10 @@
 <% SALT="NaCL" unless defined?(SALT) %>
 sam:
   id: 1
-  email: "tongxiaoming520@163.com"
-  name: "童小明"
+  email: "xijinbing520@163.com"
+  name: "刘帮"
   salt: <%= SALT %>
-  encrypted_password: <%=User.encrypt_password('icesword', SALT) %>
+  encrypted_password: <%=User.encrypt_password('admin123', SALT) %>
   status: "1"
   activated_at: <%=Time.now%>
   city: "上海"
@@ -64,7 +64,7 @@ abc:
   email: "abc520@163.com"
   name: "童大名"
   salt: <%= SALT %>
-  encrypted_password: <%=User.encrypt_password('icefsfsword', SALT) %>
+  encrypted_password: <%=User.encrypt_password('waterfsfsfell', SALT) %>
   status: "2"
   activated_at: <%=Time.now%>
   city: "上海"
