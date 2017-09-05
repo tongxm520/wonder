@@ -76,7 +76,7 @@ select user_id,count(user_id) as same  from friendships where friend_id in (sele
     ids3 =rs3.map{|r| r.id}
     _ids3=ids3.join(",")
    
-    query=sanitize_sql(["select user_id,friend_id  from friendships where friend_id in (select friend_id from friendships  where user_id= ? ) and user_id in (?) and friend_id <> ?",self.id,_ids3, self.id])
+    query=sanitize_sql(["select user_id,friend_id  from friendships where friend_id in (select friend_id from friendships  where user_id= '?' ) and user_id in ('?') and friend_id <> '?'",self.id,_ids3, self.id])
     rs=ActiveRecord::Base.connection.execute(query)
     
 		hash={}
@@ -127,7 +127,7 @@ select user_id,count(user_id) as same  from friendships where friend_id in (sele
   end
   
   def self.same_friend(user_id,id)
-    query=sanitize_sql(["select user_id,friend_id  from friendships where friend_id in (select friend_id from friendships  where user_id=? ) and user_id=? and friend_id <> ?",user_id,id,user_id])
+    query=sanitize_sql(["select user_id,friend_id  from friendships where friend_id in (select friend_id from friendships  where user_id='?' ) and user_id='?' and friend_id <> '?'",user_id,id,user_id])
     rs=ActiveRecord::Base.connection.execute(query)
     rs.count
   end

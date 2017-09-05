@@ -22,7 +22,7 @@ class FriendController < ApplicationController
   def search
     @owner="我"
     @user = current_user
-    query=sanitize_sql(["SELECT `users`.* FROM `users` where id in (select relationships.requester_id from relationships  WHERE relationships.status='pending' and relationships.requestee_id=? )",@user.id])
+    query=sanitize_sql(["SELECT `users`.* FROM `users` where id in (select relationships.requester_id from relationships  WHERE relationships.status='pending' and relationships.requestee_id='?' )",@user.id])
     @pendings = ActiveRecord::Base.connection.execute(query)
     
     @users = @user.search(params[:query])
